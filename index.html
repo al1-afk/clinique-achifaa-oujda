@@ -12,6 +12,9 @@
 <meta name="geo.placename" content="Oujda" />
 <meta name="geo.position" content="34.6814;-1.9086" />
 <meta name="ICBM" content="34.6814, -1.9086" />
+<meta name="referrer" content="strict-origin-when-cross-origin" />
+<meta name="format-detection" content="telephone=yes" />
+<meta name="color-scheme" content="light" />
 
 <title>Clinique Achifaa Oujda · Clinique privée multidisciplinaire · 17 spécialités</title>
 
@@ -123,12 +126,29 @@
     },
     {
       "@type": "FAQPage",
+      "@id": "https://al1-afk.github.io/clinique-achifaa-oujda/#faq",
       "mainEntity": [
         {"@type":"Question","name":"Comment prendre un rendez-vous à la Clinique Achifaa Oujda ?","acceptedAnswer":{"@type":"Answer","text":"Vous pouvez réserver en ligne via le formulaire, par téléphone au +212 5 36 70 00 00, ou par WhatsApp. Nous confirmons votre RDV sous 24h ouvrées."}},
         {"@type":"Question","name":"Quelles assurances sont acceptées ?","acceptedAnswer":{"@type":"Answer","text":"CNSS, CNOPS, RMA, Saham, AXA, ainsi que la plupart des mutuelles partenaires. Tiers-payant possible avec carte d'assuré et ordonnance."}},
         {"@type":"Question","name":"Les urgences sont-elles disponibles 24/7 ?","acceptedAnswer":{"@type":"Answer","text":"Oui, le service d'urgences est ouvert 24h/24 et 7j/7, avec médecins urgentistes, scanner Siemens et bloc opératoire opérationnels en permanence."}},
         {"@type":"Question","name":"Où se situe la Clinique Achifaa Oujda ?","acceptedAnswer":{"@type":"Answer","text":"Quartier Hay Salam, Oujda, région de l'Oriental, Maroc. Parking gratuit sur place. Accessible depuis le centre-ville."}},
         {"@type":"Question","name":"Quelles spécialités médicales sont disponibles ?","acceptedAnswer":{"@type":"Answer","text":"17 spécialités : cardiologie, gynécologie-obstétrique, pédiatrie, ophtalmologie, ORL, dermatologie, urologie, traumatologie-orthopédie, chirurgie viscérale, radiologie et imagerie médicale, neurologie, gastro-entérologie, néphrologie, endocrinologie, pneumologie, psychiatrie, médecine générale."}}
+      ]
+    },
+    {
+      "@type": "Person",
+      "@id": "https://al1-afk.github.io/clinique-achifaa-oujda/#dr-taligui",
+      "name": "Dr Mohammed Taligui",
+      "jobTitle": "Directeur médical",
+      "worksFor": {"@id":"https://al1-afk.github.io/clinique-achifaa-oujda/#clinic"},
+      "knowsAbout": ["Médecine clinique", "Direction médicale", "Soins multidisciplinaires"]
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {"@type":"ListItem","position":1,"name":"Accueil","item":"https://al1-afk.github.io/clinique-achifaa-oujda/"},
+        {"@type":"ListItem","position":2,"name":"Spécialités","item":"https://al1-afk.github.io/clinique-achifaa-oujda/#specialties"},
+        {"@type":"ListItem","position":3,"name":"Prendre RDV","item":"https://al1-afk.github.io/clinique-achifaa-oujda/#appointment"}
       ]
     }
   ]
@@ -421,6 +441,114 @@ html[dir="rtl"] .dropdown.is-open .dropdown-panel { transform: translateX(50%) t
 html[dir="rtl"] .dd-list li a:hover { transform: translateX(-3px); }
 
 /* =========================================
+   BURGER + MOBILE NAV
+========================================= */
+.nav-burger {
+  display: none;
+  width: 44px; height: 44px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: white;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  flex-shrink: 0;
+  transition: var(--transition);
+}
+.nav-burger:hover { border-color: var(--blue-main); }
+.nav-burger span {
+  display: block;
+  width: 20px; height: 2px;
+  background: var(--text-dark);
+  border-radius: 2px;
+  transition: var(--transition);
+}
+.nav-burger[aria-expanded="true"] span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.nav-burger[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+.nav-burger[aria-expanded="true"] span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+.mobile-nav {
+  position: fixed;
+  inset: 0;
+  z-index: 1001;
+}
+.mobile-nav[hidden] { display: none; }
+.mobile-nav-backdrop {
+  position: absolute; inset: 0;
+  background: rgba(15,23,42,0.5);
+  backdrop-filter: blur(4px);
+  opacity: 0;
+  transition: opacity 280ms ease;
+}
+.mobile-nav.is-open .mobile-nav-backdrop { opacity: 1; }
+.mobile-nav-panel {
+  position: absolute;
+  top: 0; right: 0;
+  width: min(360px, 86vw);
+  height: 100%;
+  background: white;
+  display: flex; flex-direction: column;
+  padding: 24px 22px;
+  box-shadow: -20px 0 60px -20px rgba(15,23,42,0.3);
+  transform: translateX(100%);
+  transition: transform 320ms cubic-bezier(.2,.8,.2,1);
+  overflow-y: auto;
+}
+html[dir="rtl"] .mobile-nav-panel {
+  right: auto; left: 0;
+  transform: translateX(-100%);
+  box-shadow: 20px 0 60px -20px rgba(15,23,42,0.3);
+}
+.mobile-nav.is-open .mobile-nav-panel { transform: translateX(0); }
+.mobile-nav-head {
+  display: flex; justify-content: space-between; align-items: center;
+  padding-bottom: 18px;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 18px;
+}
+.mobile-nav-title {
+  font-size: 12px; font-weight: 700;
+  letter-spacing: 0.16em; text-transform: uppercase;
+  color: var(--text-muted);
+}
+.mobile-nav-close {
+  width: 38px; height: 38px;
+  display: grid; place-items: center;
+  border-radius: 10px;
+  color: var(--text-body);
+  transition: var(--transition);
+}
+.mobile-nav-close:hover { background: var(--bg-primary); color: var(--blue-dark); }
+.mobile-nav-list {
+  list-style: none; padding: 0; margin: 0 0 24px;
+  display: flex; flex-direction: column; gap: 4px;
+}
+.mobile-nav-list a {
+  display: block;
+  padding: 13px 14px;
+  border-radius: 10px;
+  font-size: 15px; font-weight: 600;
+  color: var(--text-dark);
+  transition: var(--transition);
+}
+.mobile-nav-list a:hover, .mobile-nav-list a:focus-visible {
+  background: var(--bg-primary);
+  color: var(--blue-dark);
+}
+.mobile-nav-cta {
+  display: flex; flex-direction: column; gap: 10px;
+  margin-top: auto;
+  padding-top: 18px;
+  border-top: 1px solid var(--border);
+}
+.mobile-nav-cta .btn { justify-content: center; width: 100%; }
+body.no-scroll { overflow: hidden; }
+@media (prefers-reduced-motion: reduce) {
+  .mobile-nav-backdrop, .mobile-nav-panel { transition: none; }
+}
+
+/* =========================================
    HERO
 ========================================= */
 .hero {
@@ -431,7 +559,10 @@ html[dir="rtl"] .dd-list li a:hover { transform: translateX(-3px); }
   isolation: isolate;
   padding-top: 80px;
 }
-.hero-clean { padding-top: 0; cursor: none; }
+.hero-clean { padding-top: 0; }
+@media (hover: hover) and (pointer: fine) {
+  .hero-clean { cursor: none; }
+}
 .hero-bg {
   position: absolute; inset: -4%;
   background-image: url('images/IMG_1928.webp');
@@ -2002,6 +2133,62 @@ html[dir="rtl"] .about-feat:hover { transform: translateX(-4px); }
 .team-cta { text-align: center; margin-top: 48px; }
 
 /* =========================================
+   FAQ
+========================================= */
+.faq { background: var(--bg-white); }
+.faq-grid {
+  display: grid;
+  grid-template-columns: 0.85fr 1.15fr;
+  gap: 60px;
+  align-items: start;
+}
+.faq-text h2 { margin: 8px 0 16px; }
+.faq-text .section-sub { margin: 0 0 24px; color: var(--text-muted); font-size: 15.5px; line-height: 1.6; }
+.faq-cta { display: inline-flex; align-items: center; gap: 8px; }
+.faq-list { display: flex; flex-direction: column; gap: 12px; }
+.faq-item {
+  background: var(--bg-primary);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  transition: var(--transition);
+}
+.faq-item:hover { border-color: rgba(47,128,183,0.35); }
+.faq-q {
+  width: 100%;
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 16px;
+  padding: 18px 22px;
+  font-size: 15.5px;
+  font-weight: 600;
+  color: var(--text-dark);
+  text-align: start;
+  font-family: inherit;
+}
+.faq-q .faq-chev {
+  color: var(--text-muted);
+  transition: transform var(--transition), color var(--transition);
+  flex-shrink: 0;
+}
+.faq-item.is-open .faq-q .faq-chev { transform: rotate(180deg); color: var(--blue-main); }
+.faq-a {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 320ms cubic-bezier(.2,.8,.2,1);
+}
+.faq-a p {
+  margin: 0;
+  padding: 0 22px 20px;
+  font-size: 14.5px;
+  line-height: 1.65;
+  color: var(--text-body);
+}
+.faq-item.is-open .faq-a { max-height: 400px; }
+@media (max-width: 1100px) {
+  .faq-grid { grid-template-columns: 1fr; gap: 36px; }
+}
+
+/* =========================================
    APPOINTMENT
 ========================================= */
 .appt {
@@ -2075,6 +2262,31 @@ html[dir="rtl"] .about-feat:hover { transform: translateX(-4px); }
 .form-field select option { color: var(--text-dark); }
 .form-field textarea { resize: vertical; min-height: 90px; }
 .appt-form-cta { width: 100%; justify-content: center; margin-top: 8px; }
+.form-consent {
+  display: flex; align-items: flex-start; gap: 10px;
+  margin: 0 0 14px;
+  font-size: 12.5px;
+  line-height: 1.55;
+  color: rgba(255,255,255,0.85);
+}
+.form-consent label { display: flex; gap: 10px; align-items: flex-start; cursor: pointer; }
+.form-consent input[type="checkbox"] {
+  margin-top: 3px;
+  width: 16px; height: 16px;
+  flex-shrink: 0;
+  accent-color: var(--green-med);
+  cursor: pointer;
+}
+.form-consent a { color: inherit; text-decoration: underline; text-underline-offset: 2px; }
+.form-consent a:hover { color: var(--green-light); }
+.form-field input[aria-invalid="true"],
+.form-field select[aria-invalid="true"],
+.form-field textarea[aria-invalid="true"] {
+  border-color: #DC2626 !important;
+  background: rgba(220,38,38,0.08) !important;
+}
+section.appt .form-consent { color: var(--text-muted); }
+section.appt .form-consent a { color: var(--blue-main); }
 
 /* Confirmation panel */
 .form-success {
@@ -2228,6 +2440,7 @@ html[dir="rtl"] .footer-grid { direction: rtl; }
 ========================================= */
 @media (max-width: 1100px) {
   .nav-menu { display: none; }
+  .nav-burger { display: flex; }
   .hero-grid { grid-template-columns: 1fr; gap: 50px; }
   .hero-visual { height: 420px; }
   .stats-grid { grid-template-columns: repeat(2, 1fr); }
@@ -2248,7 +2461,8 @@ html[dir="rtl"] .footer-grid { direction: rtl; }
 }
 @media (max-width: 640px) {
   .urgence-pill span { display: none; }
-  .nav-actions .btn { display: none; }
+  .nav-actions .nav-cta { display: none; }
+  .nav-burger { width: 40px; height: 40px; }
   .section { padding: 80px 0; }
   .spec-grid { grid-template-columns: 1fr; }
   .form-row { grid-template-columns: 1fr; }
@@ -2548,9 +2762,9 @@ section.gallery-section .gallery-item-overlay {
 ==================================== -->
 <header class="navbar" id="navbar">
   <div class="container nav-inner">
-    <a href="#" class="brand" aria-label="Clinique Achifaa Oujda">
+    <a href="#hero" class="brand" aria-label="Clinique Achifaa Oujda — Accueil">
       <div class="brand-logo">
-        <img src="images/logo.png" alt="Clinique Achifaa Oujda" />
+        <img src="images/logo.png" alt="Clinique Achifaa Oujda" width="48" height="48" loading="eager" decoding="async" />
       </div>
       <div class="brand-text">
         <span class="brand-name" data-i18n="brand">Clinique Achifaa</span>
@@ -2558,13 +2772,13 @@ section.gallery-section .gallery-item-overlay {
       </div>
     </a>
 
-    <nav class="nav-menu" aria-label="Navigation principale">
+    <nav class="nav-menu" id="navMenu" aria-label="Navigation principale">
       <div class="dropdown" id="dropdown">
-        <button class="nav-link" id="dropdownBtn" aria-expanded="false">
+        <button class="nav-link" id="dropdownBtn" type="button" aria-expanded="false" aria-controls="dropdownPanel">
           <span data-i18n="nav.specialties">Spécialités</span>
-          <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg>
+          <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
         </button>
-        <div class="dropdown-panel" role="menu">
+        <div class="dropdown-panel" id="dropdownPanel" role="menu">
           <div>
             <h5 class="dd-col-title" data-i18n="dd.surgery">Chirurgie</h5>
             <ul class="dd-list">
@@ -2599,24 +2813,52 @@ section.gallery-section .gallery-item-overlay {
           </div>
         </div>
       </div>
-      <a class="nav-link" href="#team" data-i18n="nav.team">Équipe médicale</a>
+      <a class="nav-link" href="#about" data-i18n="nav.about">À propos</a>
       <a class="nav-link" href="#gallery" data-i18n="nav.news">Établissement</a>
+      <a class="nav-link" href="#faq" data-i18n="nav.faq">FAQ</a>
       <a class="nav-link" href="#appointment" data-i18n="nav.contact">Contact</a>
     </nav>
 
     <div class="nav-actions">
       <div class="urgence-pill" title="Urgences 24/7">
-        <span class="urgence-dot"></span>
+        <span class="urgence-dot" aria-hidden="true"></span>
         <span data-i18n="urgences">Urgences 24/7</span>
       </div>
-      <button class="lang-toggle" id="langToggle" aria-label="Changer de langue">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+      <button class="lang-toggle" id="langToggle" type="button" aria-label="Changer de langue">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
         <span id="langLabel">العربية</span>
       </button>
-      <a href="#appointment" class="btn btn-primary" data-i18n="cta.rdv">Prendre RDV</a>
+      <a href="#appointment" class="btn btn-primary nav-cta" data-i18n="cta.rdv">Prendre RDV</a>
+      <button class="nav-burger" id="navBurger" type="button" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="mobileNav">
+        <span></span><span></span><span></span>
+      </button>
     </div>
   </div>
 </header>
+
+<!-- Mobile navigation drawer -->
+<div class="mobile-nav" id="mobileNav" hidden>
+  <div class="mobile-nav-backdrop" id="mobileNavBackdrop"></div>
+  <nav class="mobile-nav-panel" aria-label="Navigation mobile">
+    <div class="mobile-nav-head">
+      <span class="mobile-nav-title" data-i18n="nav.menu">Menu</span>
+      <button class="mobile-nav-close" id="mobileNavClose" type="button" aria-label="Fermer le menu">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+    <ul class="mobile-nav-list">
+      <li><a href="#specialties" data-i18n="nav.specialties">Spécialités</a></li>
+      <li><a href="#about" data-i18n="nav.about">À propos</a></li>
+      <li><a href="#gallery" data-i18n="nav.news">Établissement</a></li>
+      <li><a href="#faq" data-i18n="nav.faq">FAQ</a></li>
+      <li><a href="#appointment" data-i18n="nav.contact">Contact</a></li>
+    </ul>
+    <div class="mobile-nav-cta">
+      <a href="#appointment" class="btn btn-primary" data-i18n="cta.rdv">Prendre RDV</a>
+      <a href="tel:+212536700000" class="btn btn-blue">+212 5 36 70 00 00</a>
+    </div>
+  </nav>
+</div>
 
 <!-- ====================================
      HERO — image claire & créative
@@ -2648,18 +2890,6 @@ section.gallery-section .gallery-item-overlay {
 
   <div class="hero-mark">
     <div class="hero-mark-inner" id="heroMarkInner">
-      <div class="hero-mark-circle">
-        <svg class="ring-svg" viewBox="0 0 100 100">
-          <defs>
-            <linearGradient id="ringGrad" x1="0" y1="0" x2="1" y2="1">
-              <stop offset="0%" stop-color="#34D399"/>
-              <stop offset="100%" stop-color="#67E8F9"/>
-            </linearGradient>
-          </defs>
-          <circle cx="50" cy="50" r="48" stroke="url(#ringGrad)"/>
-        </svg>
-        <img class="icon hero-logo-img" src="images/logo.png" alt="Clinique Achifaa Oujda" />
-      </div>
       <h1 class="hero-mark-title" id="heroTitle">Clinique Achifaa Oujda</h1>
       <div class="hero-mark-divider"></div>
       <p class="hero-mark-sub" data-i18n="brand_sub">CLINIQUE PRIVÉE MULTIDISCIPLINAIRE · OUJDA · ORIENTAL</p>
@@ -2756,7 +2986,7 @@ section.gallery-section .gallery-item-overlay {
   <div class="container">
     <div class="about-grid">
       <div class="about-img reveal">
-        <img src="images/4.webp" alt="Équipe médicale Clinique Achifaa Oujda" />
+        <img src="images/4.webp" alt="Équipe médicale de la Clinique Achifaa Oujda" loading="lazy" decoding="async" width="1200" height="900" />
         <div class="about-img-deco"></div>
       </div>
       <div class="reveal">
@@ -2811,24 +3041,80 @@ section.gallery-section .gallery-item-overlay {
     </div>
     <div class="gallery-grid reveal">
       <div class="gallery-item gallery-item-1">
-        <img src="images/1.webp" alt="Scanner Siemens SOMATOM go.Now" loading="lazy" />
+        <img src="images/1.webp" alt="Scanner Siemens SOMATOM go.Now installé à la Clinique Achifaa Oujda" loading="lazy" decoding="async" width="1200" height="800" />
         <div class="gallery-item-overlay" data-i18n="gal.scan">Scanner Siemens SOMATOM</div>
       </div>
       <div class="gallery-item">
-        <img src="images/IMG_1923.webp" alt="Bloc opératoire" loading="lazy" />
+        <img src="images/IMG_1923.webp" alt="Bloc opératoire moderne — Clinique Achifaa Oujda" loading="lazy" decoding="async" width="1200" height="800" />
         <div class="gallery-item-overlay" data-i18n="gal.bloc">Bloc opératoire</div>
       </div>
       <div class="gallery-item">
-        <img src="images/2.webp" alt="Radiologie Siemens" loading="lazy" />
+        <img src="images/2.webp" alt="Radiologie numérique Siemens — Clinique Achifaa Oujda" loading="lazy" decoding="async" width="1200" height="800" />
         <div class="gallery-item-overlay" data-i18n="gal.radio">Radiologie</div>
       </div>
       <div class="gallery-item">
-        <img src="images/IMG_1925.webp" alt="Salle de soins intensifs" loading="lazy" />
+        <img src="images/IMG_1925.webp" alt="Salle de soins intensifs — Clinique Achifaa Oujda" loading="lazy" decoding="async" width="1200" height="800" />
         <div class="gallery-item-overlay" data-i18n="gal.icu">Soins intensifs</div>
       </div>
       <div class="gallery-item">
-        <img src="images/5.webp" alt="Soins infirmiers" loading="lazy" />
+        <img src="images/5.webp" alt="Service de soins infirmiers — Clinique Achifaa Oujda" loading="lazy" decoding="async" width="1200" height="800" />
         <div class="gallery-item-overlay" data-i18n="gal.care">Soins infirmiers</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====================================
+     FAQ
+==================================== -->
+<section class="section faq" id="faq">
+  <div class="container">
+    <div class="faq-grid">
+      <div class="faq-text reveal">
+        <span class="eyebrow" data-i18n="faq.eyebrow">FAQ</span>
+        <h2><span data-i18n="faq.title1">Questions</span> <em data-i18n="faq.title2">fréquentes.</em></h2>
+        <p class="section-sub" data-i18n="faq.sub">Vous ne trouvez pas votre réponse ? Contactez-nous au +212 5 36 70 00 00 ou via WhatsApp.</p>
+        <a href="https://wa.me/212536700000" target="_blank" rel="noopener noreferrer" class="btn btn-primary faq-cta">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.5 14.4l-2.6-1.3c-.4-.2-.7 0-.9.2-.2.3-.6.7-.7.9-.1.2-.3.2-.5.1-.7-.4-1.6-.8-2.7-1.7-.6-.6-1.2-1.4-1.4-1.7-.1-.2 0-.3.1-.4.1-.1.2-.2.4-.4.1-.1.2-.2.3-.4.1-.2 0-.4-.1-.5L8.4 7c-.1-.4-.4-.4-.7-.4h-.6c-.2 0-.6.1-.9.4s-1.1 1.1-1.1 2.6 1.1 3 1.3 3.2c.1.2 2.2 3.4 5.3 4.7 2.6 1.1 3.2.9 3.7.8.6-.1 1.7-.7 1.9-1.4.2-.7.2-1.2.2-1.4-.1-.1-.3-.1-.5-.2zM12 0a12 12 0 00-10.3 18.1L0 24l6-1.6A12 12 0 1012 0z"/></svg>
+          <span data-i18n="faq.cta">Poser une question</span>
+        </a>
+      </div>
+      <div class="faq-list reveal" id="faqList" role="list">
+        <article class="faq-item" role="listitem">
+          <button class="faq-q" type="button" aria-expanded="false">
+            <span data-i18n="faq.1.q">Comment prendre un rendez-vous ?</span>
+            <svg class="faq-chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="faq-a"><p data-i18n="faq.1.a">Vous pouvez réserver en ligne via le formulaire en bas de page, par téléphone au +212 5 36 70 00 00, ou par WhatsApp. Nous confirmons votre RDV sous 24h ouvrées.</p></div>
+        </article>
+        <article class="faq-item" role="listitem">
+          <button class="faq-q" type="button" aria-expanded="false">
+            <span data-i18n="faq.2.q">Quelles assurances sont acceptées ?</span>
+            <svg class="faq-chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="faq-a"><p data-i18n="faq.2.a">CNSS, CNOPS, RMA, Saham, AXA, ainsi que la plupart des mutuelles partenaires. Tiers-payant possible avec présentation de votre carte d'assuré et ordonnance.</p></div>
+        </article>
+        <article class="faq-item" role="listitem">
+          <button class="faq-q" type="button" aria-expanded="false">
+            <span data-i18n="faq.3.q">Les urgences sont-elles disponibles 24/7 ?</span>
+            <svg class="faq-chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="faq-a"><p data-i18n="faq.3.a">Oui, notre service d'urgences est ouvert 24h/24, 7j/7, avec médecins urgentistes, scanner et bloc opératoire opérationnels en permanence.</p></div>
+        </article>
+        <article class="faq-item" role="listitem">
+          <button class="faq-q" type="button" aria-expanded="false">
+            <span data-i18n="faq.4.q">Proposez-vous la téléconsultation ?</span>
+            <svg class="faq-chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="faq-a"><p data-i18n="faq.4.a">Oui, pour le suivi médical et certaines spécialités. La première consultation reste cependant en présentiel pour un examen clinique complet.</p></div>
+        </article>
+        <article class="faq-item" role="listitem">
+          <button class="faq-q" type="button" aria-expanded="false">
+            <span data-i18n="faq.5.q">Où se situe la clinique ?</span>
+            <svg class="faq-chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="faq-a"><p data-i18n="faq.5.a">Quartier Hay Salam, Oujda, région de l'Oriental, Maroc. Parking gratuit sur place. Accessible en transports en commun et à pied depuis le centre-ville.</p></div>
+        </article>
       </div>
     </div>
   </div>
@@ -2869,7 +3155,8 @@ section.gallery-section .gallery-item-overlay {
 
       <form class="appt-form reveal" id="apptForm"
             action="https://formsubmit.co/nextgital10@gmail.com"
-            method="POST">
+            method="POST"
+            novalidate>
         <!-- FormSubmit.co configuration -->
         <input type="hidden" name="_subject" value="Nouvelle demande de RDV — Clinique Achifaa Oujda" />
         <input type="hidden" name="_template" value="table" />
@@ -2877,16 +3164,16 @@ section.gallery-section .gallery-item-overlay {
         <input type="hidden" name="_next" value="https://al1-afk.github.io/clinique-achifaa-oujda/?rdv=ok#appointment" />
         <input type="hidden" name="_autoresponse" value="Bonjour, nous avons bien reçu votre demande de rendez-vous à la Clinique Achifaa Oujda. Notre équipe vous recontactera sous 24h ouvrées pour confirmer la date et l'heure. Merci de votre confiance. — Clinique Achifaa Oujda · +212 5 36 70 00 00" />
         <!-- Honeypot anti-spam -->
-        <input type="text" name="_honey" style="display:none" />
+        <input type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0;" />
 
         <div class="form-row">
           <div class="form-field">
             <label for="f-name" data-i18n="form.name">Nom complet</label>
-            <input type="text" id="f-name" name="Nom" required placeholder="Ahmed Benali" />
+            <input type="text" id="f-name" name="Nom" required minlength="2" maxlength="80" autocomplete="name" placeholder="Ahmed Benali" />
           </div>
           <div class="form-field">
             <label for="f-tel" data-i18n="form.tel">Téléphone</label>
-            <input type="tel" id="f-tel" name="Téléphone" required placeholder="+212 6 ..." />
+            <input type="tel" id="f-tel" name="Téléphone" required autocomplete="tel" inputmode="tel" pattern="^[+0-9 ()\-]{8,20}$" placeholder="+212 6 ..." />
           </div>
         </div>
         <div class="form-row">
@@ -2895,23 +3182,23 @@ section.gallery-section .gallery-item-overlay {
             <select id="f-spec" name="Spécialité" required>
               <option value="" data-i18n="form.choose">— Choisir —</option>
               <option>Cardiologie</option>
-              <option>Dermatologie</option>
-              <option>Pédiatrie</option>
-              <option>Gynécologie & Obstétrique</option>
               <option>Chirurgie viscérale et digestive</option>
-              <option>Urologie</option>
-              <option>Ophtalmologie</option>
-              <option>Traumatologie & orthopédie</option>
-              <option>Radiologie & Imagerie</option>
-              <option>Médecine générale</option>
-              <option>ORL</option>
-              <option>Cardiologie</option>
-              <option>Neurologie</option>
+              <option>Dermatologie</option>
               <option>Endocrinologie</option>
               <option>Gastro-entérologie</option>
+              <option>Gynécologie & Obstétrique</option>
+              <option>Médecine générale</option>
               <option>Néphrologie</option>
+              <option>Neurologie</option>
+              <option>Ophtalmologie</option>
+              <option>ORL (Oto-Rhino-Laryngologie)</option>
+              <option>Pédiatrie</option>
               <option>Pneumologie</option>
               <option>Psychiatrie</option>
+              <option>Radiologie & Imagerie</option>
+              <option>Traumatologie & orthopédie</option>
+              <option>Urologie</option>
+              <option data-i18n="form.spec.other">Autre / Je ne sais pas</option>
             </select>
           </div>
           <div class="form-field">
@@ -2922,7 +3209,7 @@ section.gallery-section .gallery-item-overlay {
         <div class="form-row">
           <div class="form-field">
             <label for="f-email" data-i18n="form.email">Email (optionnel)</label>
-            <input type="email" id="f-email" name="Email" placeholder="vous@exemple.com" />
+            <input type="email" id="f-email" name="Email" autocomplete="email" inputmode="email" maxlength="120" placeholder="vous@exemple.com" />
           </div>
           <div class="form-field">
             <label for="f-time" data-i18n="form.time">Créneau préféré</label>
@@ -2936,11 +3223,17 @@ section.gallery-section .gallery-item-overlay {
         </div>
         <div class="form-field" style="margin-bottom: 18px;">
           <label for="f-msg" data-i18n="form.msg">Message (optionnel)</label>
-          <textarea id="f-msg" name="Message" placeholder="Précisez votre demande..."></textarea>
+          <textarea id="f-msg" name="Message" maxlength="1500" placeholder="Précisez votre demande..."></textarea>
         </div>
+        <p class="form-consent">
+          <label>
+            <input type="checkbox" id="f-consent" name="Consentement" required value="oui" />
+            <span data-i18n="form.consent">J'accepte que mes données soient utilisées pour traiter ma demande conformément aux <a href="mentions-legales.html">mentions légales</a>.</span>
+          </label>
+        </p>
         <button type="submit" class="btn btn-primary appt-form-cta">
           <span data-i18n="form.submit">Confirmer le rendez-vous</span>
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
         </button>
 
         <!-- Confirmation client (affichée après succès via ?rdv=ok) -->
@@ -2995,21 +3288,21 @@ section.gallery-section .gallery-item-overlay {
   <div class="container">
     <div class="footer-grid">
       <div class="footer-brand">
-        <div class="brand">
+        <a href="#hero" class="brand" aria-label="Clinique Achifaa Oujda — Accueil">
           <div class="brand-logo">
-            <img src="images/logo.png" alt="Clinique Achifaa Oujda" />
+            <img src="images/logo.png" alt="Clinique Achifaa Oujda" width="48" height="48" loading="lazy" decoding="async" />
           </div>
           <div class="brand-text">
             <span class="brand-name">Clinique Achifaa</span>
             <span class="brand-sub">OUJDA · ORIENTAL</span>
           </div>
-        </div>
+        </a>
         <p class="footer-tagline" data-i18n="footer.tag">Clinique privée multidisciplinaire à Oujda. 17 spécialités, urgences 24/7, équipe expérimentée.</p>
         <div class="socials">
-          <a href="#" aria-label="Facebook"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M9 8H6v4h3v12h5V12h3.6l.4-4H14V6.3c0-1 .2-1.3 1.1-1.3H18V0h-3.6C10.8 0 9 1.6 9 4.6V8z"/></svg></a>
-          <a href="#" aria-label="Instagram"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.4A4 4 0 1112.6 8 4 4 0 0116 11.4zM17.5 6.5h.01"/></svg></a>
-          <a href="#" aria-label="LinkedIn"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-4 0v7h-4v-7a6 6 0 016-6zM2 9h4v12H2zM4 6a2 2 0 110-4 2 2 0 010 4z"/></svg></a>
-          <a href="#" aria-label="WhatsApp"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4l-2.6-1.3c-.4-.2-.7 0-.9.2-.2.3-.6.7-.7.9-.1.2-.3.2-.5.1-.7-.4-1.6-.8-2.7-1.7-.6-.6-1.2-1.4-1.4-1.7-.1-.2 0-.3.1-.4.1-.1.2-.2.4-.4.1-.1.2-.2.3-.4.1-.2 0-.4-.1-.5L8.4 7c-.1-.4-.4-.4-.7-.4h-.6c-.2 0-.6.1-.9.4s-1.1 1.1-1.1 2.6 1.1 3 1.3 3.2c.1.2 2.2 3.4 5.3 4.7 2.6 1.1 3.2.9 3.7.8.6-.1 1.7-.7 1.9-1.4.2-.7.2-1.2.2-1.4-.1-.1-.3-.1-.5-.2zM12 0a12 12 0 00-10.3 18.1L0 24l6-1.6A12 12 0 1012 0z"/></svg></a>
+          <a href="https://wa.me/212536700000" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp Clinique Achifaa"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.5 14.4l-2.6-1.3c-.4-.2-.7 0-.9.2-.2.3-.6.7-.7.9-.1.2-.3.2-.5.1-.7-.4-1.6-.8-2.7-1.7-.6-.6-1.2-1.4-1.4-1.7-.1-.2 0-.3.1-.4.1-.1.2-.2.4-.4.1-.1.2-.2.3-.4.1-.2 0-.4-.1-.5L8.4 7c-.1-.4-.4-.4-.7-.4h-.6c-.2 0-.6.1-.9.4s-1.1 1.1-1.1 2.6 1.1 3 1.3 3.2c.1.2 2.2 3.4 5.3 4.7 2.6 1.1 3.2.9 3.7.8.6-.1 1.7-.7 1.9-1.4.2-.7.2-1.2.2-1.4-.1-.1-.3-.1-.5-.2zM12 0a12 12 0 00-10.3 18.1L0 24l6-1.6A12 12 0 1012 0z"/></svg></a>
+          <a href="tel:+212536700000" aria-label="Téléphone Clinique Achifaa Oujda"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.13.96.37 1.91.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.9.33 1.85.57 2.81.7A2 2 0 0122 16.92z"/></svg></a>
+          <a href="mailto:contact@clinique-achifaa.ma" aria-label="Email Clinique Achifaa Oujda"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></a>
+          <a href="https://maps.google.com/?q=Clinique+Achifaa+Oujda" target="_blank" rel="noopener noreferrer" aria-label="Itinéraire vers la Clinique Achifaa Oujda"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></a>
         </div>
       </div>
 
@@ -3028,9 +3321,10 @@ section.gallery-section .gallery-item-overlay {
         <h4 data-i18n="footer.links">Liens utiles</h4>
         <ul>
           <li><a href="#about" data-i18n="footer.about">À propos</a></li>
-          <li><a href="#gallery" data-i18n="footer.team">Établissement</a></li>
+          <li><a href="#gallery" data-i18n="footer.estab">Établissement</a></li>
+          <li><a href="#faq" data-i18n="footer.faq">FAQ</a></li>
           <li><a href="#appointment" data-i18n="footer.rdv">Prendre RDV</a></li>
-          <li><a href="https://wa.me/212536700000" data-i18n="footer.wa">WhatsApp</a></li>
+          <li><a href="https://wa.me/212536700000" target="_blank" rel="noopener noreferrer" data-i18n="footer.wa">WhatsApp</a></li>
           <li><a href="mentions-legales.html" data-i18n="footer.legal">Mentions légales</a></li>
         </ul>
       </div>
