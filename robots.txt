@@ -1,0 +1,21 @@
+User-agent: *
+Allow: /
+Disallow: /images-original/
+
+# AI crawlers — autorisés (GEO)
+User-agent: GPTBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+Sitemap: https://al1-afk.github.io/clinique-achifaa-oujda/sitemap.xml

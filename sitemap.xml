@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/0.9">
+  <url>
+    <loc>https://al1-afk.github.io/clinique-achifaa-oujda/</loc>
+    <lastmod>2026-05-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://al1-afk.github.io/clinique-achifaa-oujda/" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://al1-afk.github.io/clinique-achifaa-oujda/?lang=ar" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://al1-afk.github.io/clinique-achifaa-oujda/" />
+    <image:image>
+      <image:loc>https://al1-afk.github.io/clinique-achifaa-oujda/images/IMG_1928.webp</image:loc>
+      <image:title>Façade Clinique Achifaa Oujda</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://al1-afk.github.io/clinique-achifaa-oujda/images/1.webp</image:loc>
+      <image:title>Scanner Siemens SOMATOM go.Now</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://al1-afk.github.io/clinique-achifaa-oujda/images/IMG_1923.webp</image:loc>
+      <image:title>Bloc opératoire moderne</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://al1-afk.github.io/clinique-achifaa-oujda/mentions-legales.html</loc>
+    <lastmod>2026-05-06</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+</urlset>
