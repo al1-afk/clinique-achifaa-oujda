@@ -2,31 +2,216 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:xhtml="http://www.w3.org/1999/xhtml"
         xmlns:image="http://www.google.com/schemas/sitemap-image/0.9">
+
+  <!-- Accueil -->
   <url>
-    <loc>https://al1-afk.github.io/clinique-achifaa-oujda/</loc>
-    <lastmod>2026-05-06</lastmod>
+    <loc>https://cliniqueachifaaoujda.com/</loc>
+    <lastmod>2026-05-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://al1-afk.github.io/clinique-achifaa-oujda/" />
-    <xhtml:link rel="alternate" hreflang="ar" href="https://al1-afk.github.io/clinique-achifaa-oujda/?lang=ar" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://al1-afk.github.io/clinique-achifaa-oujda/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cliniqueachifaaoujda.com/" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://cliniqueachifaaoujda.com/?lang=ar" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cliniqueachifaaoujda.com/" />
     <image:image>
-      <image:loc>https://al1-afk.github.io/clinique-achifaa-oujda/images/IMG_1928.webp</image:loc>
+      <image:loc>https://cliniqueachifaaoujda.com/images/IMG_1928.webp</image:loc>
       <image:title>Façade Clinique Achifaa Oujda</image:title>
     </image:image>
     <image:image>
-      <image:loc>https://al1-afk.github.io/clinique-achifaa-oujda/images/1.webp</image:loc>
+      <image:loc>https://cliniqueachifaaoujda.com/images/1.webp</image:loc>
       <image:title>Scanner Siemens SOMATOM go.Now</image:title>
     </image:image>
     <image:image>
-      <image:loc>https://al1-afk.github.io/clinique-achifaa-oujda/images/IMG_1923.webp</image:loc>
+      <image:loc>https://cliniqueachifaaoujda.com/images/IMG_1923.webp</image:loc>
       <image:title>Bloc opératoire moderne</image:title>
     </image:image>
   </url>
+
+  <!-- Index spécialités -->
   <url>
-    <loc>https://al1-afk.github.io/clinique-achifaa-oujda/mentions-legales.html</loc>
-    <lastmod>2026-05-06</lastmod>
+    <loc>https://cliniqueachifaaoujda.com/services/</loc>
+    <lastmod>2026-05-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- Spécialités (17) -->
+  <url>
+    <loc>https://cliniqueachifaaoujda.com/services/cardiologie.html</loc>
+    <lastmod>2026-05-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+    <image:image>
+      <image:loc>https://cliniqueachifaaoujda.com/images/Cardiologie%20(sans%20chirurgie%20cardiaque).webp</image:loc>
+      <image:title>Cardiologie à Oujda</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://cliniqueachifaaoujda.com/services/gynecologie-obstetrique.html</loc>
+    <lastmod>2026-05-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+    <image:image>
+      <image:loc>https://cliniqueachifaaoujda.com/images/Gyn%C3%A9cologie%20et%20obst%C3%A9trique.webp</image:loc>
+      <image:title>Gynécologie à Oujda</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://cliniqueachifaaoujda.com/services/pediatrie.html</loc>
+    <lastmod>2026-05-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+    <image:image>
+      <image:loc>https://cliniqueachifaaoujda.com/images/P%C3%A9diatrie.webp</image:loc>
+      <image:title>Pédiatrie à Oujda</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://cliniqueachifaaoujda.com/services/radiologie-imagerie.html</loc>
+    <lastmod>2026-05-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+    <image:image>
+      <image:loc>https://cliniqueachifaaoujda.com/images/Radiologie%20et%20imagerie%20m%C3%A9dicale.webp</image:loc>
+      <image:title>Scanner et Radiologie à Oujda</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://cliniqueachifaaoujda.com/services/chirurgie-viscerale-digestive.html</loc>
+    <lastmod>2026-05-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://cliniqueachifaaoujda.com/images/Chirurgie%20visc%C3%A9rale%20et%20digestive.webp</image:loc>
+      <image:title>Chirurgie viscérale et digestive à Oujda</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://cliniqueachifaaoujda.com/services/urologie.html</loc>
+    <lastmod>2026-05-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://cliniqueachifaaoujda.com/images/urologie.webp</image:loc>
+      <image:title>Urologue à Oujda</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://cliniqueachifaaoujda.com/services/ophtalmologie.html</loc>
+    <lastmod>2026-05-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://cliniqueachifaaoujda.com/images/Ophtalmologie.webp</image:loc>
+      <image:title>Ophtalmologue à Oujda</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://cliniqueachifaaoujda.com/services/orl.html</loc>
+    <lastmod>2026-05-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://cliniqueachifaaoujda.com/images/ORL%20(Oto-Rhino-Laryngologie).webp</image:loc>
+      <image:title>ORL à Oujda</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://cliniqueachifaaoujda.com/services/traumatologie-orthopedie.html</loc>
+    <lastmod>2026-05-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://cliniqueachifaaoujda.com/images/Traumatologie%20et%20orthop%C3%A9die.webp</image:loc>
+      <image:title>Orthopédiste à Oujda</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://cliniqueachifaaoujda.com/services/dermatologie.html</loc>
+    <lastmod>2026-05-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://cliniqueachifaaoujda.com/images/Dermatologie.webp</image:loc>
+      <image:title>Dermatologue à Oujda</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://cliniqueachifaaoujda.com/services/medecine-generale.html</loc>
+    <lastmod>2026-05-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+    <image:image>
+      <image:loc>https://cliniqueachifaaoujda.com/images/M%C3%A9decine%20g%C3%A9n%C3%A9rale.webp</image:loc>
+      <image:title>Médecin généraliste à Oujda</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://cliniqueachifaaoujda.com/services/neurologie.html</loc>
+    <lastmod>2026-05-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+    <image:image>
+      <image:loc>https://cliniqueachifaaoujda.com/images/Neurologie.webp</image:loc>
+      <image:title>Neurologue à Oujda</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://cliniqueachifaaoujda.com/services/gastro-enterologie.html</loc>
+    <lastmod>2026-05-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+    <image:image>
+      <image:loc>https://cliniqueachifaaoujda.com/images/Gastro-ent%C3%A9rologie.webp</image:loc>
+      <image:title>Gastro-entérologue à Oujda</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://cliniqueachifaaoujda.com/services/endocrinologie.html</loc>
+    <lastmod>2026-05-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+    <image:image>
+      <image:loc>https://cliniqueachifaaoujda.com/images/Endocrinologie.webp</image:loc>
+      <image:title>Endocrinologue à Oujda</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://cliniqueachifaaoujda.com/services/pneumologie.html</loc>
+    <lastmod>2026-05-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+    <image:image>
+      <image:loc>https://cliniqueachifaaoujda.com/images/Pneumologie.webp</image:loc>
+      <image:title>Pneumologue à Oujda</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://cliniqueachifaaoujda.com/services/nephrologie.html</loc>
+    <lastmod>2026-05-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://cliniqueachifaaoujda.com/images/N%C3%A9phrologie.webp</image:loc>
+      <image:title>Néphrologue à Oujda</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://cliniqueachifaaoujda.com/services/psychiatrie.html</loc>
+    <lastmod>2026-05-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://cliniqueachifaaoujda.com/images/Psychiatrie.webp</image:loc>
+      <image:title>Psychiatre à Oujda</image:title>
+    </image:image>
+  </url>
+
+  <!-- Mentions légales -->
+  <url>
+    <loc>https://cliniqueachifaaoujda.com/mentions-legales.html</loc>
+    <lastmod>2026-05-09</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
+
 </urlset>

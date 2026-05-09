@@ -2,19 +2,47 @@
   "name": "Clinique Achifaa Oujda",
   "short_name": "Achifaa Oujda",
   "description": "Clinique privée multidisciplinaire à Oujda — 17 spécialités, urgences 24/7.",
-  "start_url": "/clinique-achifaa-oujda/",
-  "scope": "/clinique-achifaa-oujda/",
+  "start_url": "/",
+  "scope": "/",
   "display": "standalone",
+  "orientation": "portrait",
   "background_color": "#FFFFFF",
   "theme_color": "#1F5D8C",
   "lang": "fr-MA",
   "dir": "ltr",
+  "categories": ["health", "medical", "lifestyle"],
   "icons": [
     {
       "src": "images/logo.png",
       "sizes": "256x256",
       "type": "image/png",
       "purpose": "any"
+    },
+    {
+      "src": "images/logo.png",
+      "sizes": "256x256",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Prendre RDV",
+      "short_name": "RDV",
+      "url": "/#appointment",
+      "description": "Réservez votre consultation"
+    },
+    {
+      "name": "Urgences 24/7",
+      "short_name": "Urgences",
+      "url": "tel:+212536700000",
+      "description": "Appeler les urgences"
+    },
+    {
+      "name": "Toutes les spécialités",
+      "short_name": "Spécialités",
+      "url": "/services/",
+      "description": "Voir toutes les spécialités"
     }
   ]
 }
