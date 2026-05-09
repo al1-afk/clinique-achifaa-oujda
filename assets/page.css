@@ -631,3 +631,43 @@ html[dir="rtl"] .floating { right: auto; left: 22px; }
 .mt-0 { margin-top: 0; }
 .mb-0 { margin-bottom: 0; }
 .muted { color: var(--text-muted); }
+
+/* ====== LANG TOGGLE ====== */
+.lang-toggle {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 8px 12px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: white;
+  font-size: 13px; font-weight: 600;
+  color: var(--text-body);
+  transition: var(--transition);
+}
+.lang-toggle:hover { border-color: var(--blue-main); color: var(--blue-main); }
+
+/* ====== RTL OVERRIDES (Arabic) ====== */
+html[dir="rtl"] body { font-family: 'Cairo', 'Poppins', sans-serif; }
+html[dir="rtl"] .breadcrumb { flex-direction: row-reverse; justify-content: flex-end; }
+html[dir="rtl"] .checklist li { flex-direction: row-reverse; }
+html[dir="rtl"] .step::before { left: auto; right: 18px; }
+html[dir="rtl"] .sister-link:hover { transform: translateX(-4px); }
+html[dir="rtl"] .info-table th,
+html[dir="rtl"] .info-table td { text-align: right; }
+html[dir="rtl"] .floating { right: auto; left: 22px; }
+html[dir="rtl"] .page-hero-badge { left: auto; right: 16px; }
+html[dir="rtl"] .intro-block {
+  border-left: 0;
+  border-right: 4px solid var(--green-med);
+}
+html[dir="rtl"] .page-hero-cta { flex-direction: row-reverse; justify-content: flex-end; }
+html[dir="rtl"] .hero-meta { flex-direction: row-reverse; justify-content: flex-end; }
+html[dir="rtl"] .nav-inner { flex-direction: row-reverse; }
+html[dir="rtl"] .nav-menu,
+html[dir="rtl"] .nav-actions { flex-direction: row-reverse; }
+html[dir="rtl"] .footer-grid { direction: rtl; }
+html[dir="rtl"] .copyright { flex-direction: row-reverse; }
+html[dir="rtl"] .faq-q .faq-chev { margin-right: auto; margin-left: 0; }
+
+@media (max-width: 540px) {
+  html[dir="rtl"] .floating { left: 14px; }
+}

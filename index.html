@@ -4307,12 +4307,25 @@ function updateClock() {
 }
 setInterval(updateClock, 1000);
 
-// Re-animate title on lang change
+// Re-animate title on lang change + rewrite specialty links to AR/FR pages
 const origApplyLang = applyLang;
 applyLang = function(lang) {
   origApplyLang(lang);
   animateHeroTitle();
   buildMarquee();
+  // Switch dropdown + footer specialty links to /services/ar/ when AR
+  document.querySelectorAll('a[href*="services/"]').forEach(a => {
+    const href = a.getAttribute('href');
+    if (lang === 'ar') {
+      if (href.startsWith('services/') && !href.startsWith('services/ar/')) {
+        a.setAttribute('href', href.replace(/^services\//, 'services/ar/'));
+      }
+    } else {
+      if (href.startsWith('services/ar/')) {
+        a.setAttribute('href', href.replace(/^services\/ar\//, 'services/'));
+      }
+    }
+  });
 };
 
 // Cookie banner — RGPD
