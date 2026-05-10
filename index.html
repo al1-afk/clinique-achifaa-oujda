@@ -2762,6 +2762,513 @@ section.faq .faq-item.is-open { box-shadow: 0 12px 28px -12px rgba(47,128,183,0.
 section.gallery-section .gallery-item-overlay {
   background: linear-gradient(transparent 50%, rgba(31,93,140,0.85));
 }
+
+/* =========================================
+   ATLAS MÉDICAL — Bento dark redesign
+========================================= */
+.atlas {
+  position: relative;
+  background: linear-gradient(180deg, #0B1220 0%, #0F172A 50%, #131C32 100%);
+  color: white;
+  padding: 120px 0;
+  overflow: hidden;
+  isolation: isolate;
+}
+@media (max-width: 720px) { .atlas { padding: 80px 0; } }
+
+.atlas-bg-grid {
+  position: absolute; inset: 0;
+  z-index: -2;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px);
+  background-size: 56px 56px;
+  mask-image: radial-gradient(ellipse 75% 60% at center 30%, black 30%, transparent 80%);
+  -webkit-mask-image: radial-gradient(ellipse 75% 60% at center 30%, black 30%, transparent 80%);
+  pointer-events: none;
+}
+
+.atlas-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(110px);
+  opacity: 0.45;
+  pointer-events: none;
+  z-index: -1;
+}
+.atlas-orb-1 {
+  width: 520px; height: 520px;
+  top: -120px; left: -150px;
+  background: radial-gradient(circle, #2563EB, transparent 70%);
+  animation: atlasOrb1 22s ease-in-out infinite;
+}
+.atlas-orb-2 {
+  width: 460px; height: 460px;
+  bottom: -180px; right: -120px;
+  background: radial-gradient(circle, #10B981, transparent 70%);
+  animation: atlasOrb2 26s ease-in-out infinite;
+}
+.atlas-orb-3 {
+  width: 320px; height: 320px;
+  top: 40%; right: 20%;
+  background: radial-gradient(circle, #8B5CF6, transparent 70%);
+  opacity: 0.25;
+  animation: atlasOrb3 30s ease-in-out infinite;
+}
+@keyframes atlasOrb1 { 0%,100% { transform: translate(0,0) scale(1); } 50% { transform: translate(80px,60px) scale(1.1); } }
+@keyframes atlasOrb2 { 0%,100% { transform: translate(0,0) scale(1); } 50% { transform: translate(-100px,-50px) scale(1.15); } }
+@keyframes atlasOrb3 { 0%,100% { transform: translate(0,0) scale(1); } 50% { transform: translate(-60px,40px) scale(1.2); } }
+
+/* HEAD */
+.atlas-head {
+  text-align: center;
+  max-width: 780px;
+  margin: 0 auto 56px;
+  position: relative;
+}
+.atlas-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 16px 8px 12px;
+  background: rgba(52,211,153,0.08);
+  border: 1px solid rgba(52,211,153,0.25);
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #34D399;
+  margin-bottom: 22px;
+}
+.atlas-eyebrow-dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: #34D399;
+  box-shadow: 0 0 0 0 rgba(52,211,153,0.6);
+  animation: atlasPulse 1.6s ease-out infinite;
+}
+@keyframes atlasPulse {
+  0% { box-shadow: 0 0 0 0 rgba(52,211,153,0.6); }
+  100% { box-shadow: 0 0 0 14px rgba(52,211,153,0); }
+}
+
+.atlas-title {
+  font-size: clamp(38px, 6.5vw, 72px);
+  font-weight: 800;
+  line-height: 1.02;
+  letter-spacing: -0.03em;
+  margin: 0 0 18px;
+  color: white;
+}
+.atlas-title em {
+  font-style: normal;
+  background: linear-gradient(135deg, #34D399 0%, #60A5FA 50%, #A78BFA 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  display: inline-block;
+}
+.atlas-sub {
+  font-size: 17px;
+  color: rgba(255,255,255,0.65);
+  margin: 0 auto 32px;
+  line-height: 1.6;
+  max-width: 560px;
+}
+
+/* SEARCH */
+.atlas-search {
+  position: relative;
+  max-width: 580px;
+  margin: 0 auto 28px;
+}
+.atlas-search > svg {
+  position: absolute;
+  left: 22px; top: 50%;
+  transform: translateY(-50%);
+  color: rgba(255,255,255,0.45);
+  pointer-events: none;
+  z-index: 1;
+}
+.atlas-search input {
+  width: 100%;
+  padding: 18px 88px 18px 56px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 16px;
+  color: white;
+  font-size: 15px;
+  font-family: inherit;
+  font-weight: 500;
+  transition: all 220ms ease;
+  backdrop-filter: blur(12px);
+  -webkit-appearance: none;
+  appearance: none;
+}
+.atlas-search input::placeholder { color: rgba(255,255,255,0.38); }
+.atlas-search input::-webkit-search-cancel-button { display: none; }
+.atlas-search input:focus {
+  outline: none;
+  background: rgba(255,255,255,0.08);
+  border-color: rgba(52,211,153,0.5);
+  box-shadow: 0 0 0 4px rgba(52,211,153,0.12), 0 12px 40px -12px rgba(52,211,153,0.3);
+}
+.atlas-search input:focus ~ svg,
+.atlas-search input:focus + svg { color: #34D399; }
+.atlas-search-kbd {
+  position: absolute;
+  right: 16px; top: 50%;
+  transform: translateY(-50%);
+  padding: 4px 10px;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 7px;
+  font-family: 'SF Mono', 'Menlo', monospace;
+  font-size: 11.5px;
+  font-weight: 600;
+  color: rgba(255,255,255,0.55);
+  letter-spacing: 0.05em;
+  pointer-events: none;
+}
+@media (max-width: 480px) {
+  .atlas-search-kbd { display: none; }
+  .atlas-search input { padding-right: 22px; }
+}
+html[dir="rtl"] .atlas-search > svg { left: auto; right: 22px; }
+html[dir="rtl"] .atlas-search input { padding: 18px 56px 18px 88px; }
+html[dir="rtl"] .atlas-search-kbd { right: auto; left: 16px; }
+
+/* FILTERS */
+.atlas-filters {
+  display: inline-flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+  padding: 6px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 999px;
+  backdrop-filter: blur(10px);
+}
+@media (max-width: 720px) {
+  .atlas-filters { display: flex; border-radius: 22px; }
+}
+.atlas-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 16px;
+  background: transparent;
+  border: 0;
+  border-radius: 999px;
+  color: rgba(255,255,255,0.75);
+  font-size: 13.5px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 220ms ease;
+  font-family: inherit;
+}
+.atlas-chip:hover {
+  background: rgba(255,255,255,0.06);
+  color: white;
+}
+.atlas-chip.is-active {
+  background: white;
+  color: #0F172A;
+  box-shadow: 0 4px 16px -4px rgba(255,255,255,0.3);
+}
+.atlas-chip-icon {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: #94A3B8;
+  flex-shrink: 0;
+}
+.atlas-chip-icon[data-cat-color="all"]       { background: linear-gradient(135deg, #34D399, #60A5FA); }
+.atlas-chip-icon[data-cat-color="chirurgie"] { background: #F87171; }
+.atlas-chip-icon[data-cat-color="medecine"]  { background: #60A5FA; }
+.atlas-chip-icon[data-cat-color="imagerie"]  { background: #C084FC; }
+.atlas-chip-icon[data-cat-color="gyneco"]    { background: #F472B6; }
+.atlas-chip-icon[data-cat-color="pediatrie"] { background: #34D399; }
+.atlas-chip-count {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 22px;
+  height: 22px;
+  padding: 0 6px;
+  background: rgba(255,255,255,0.1);
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0;
+}
+.atlas-chip.is-active .atlas-chip-count {
+  background: #0F172A;
+  color: white;
+}
+
+/* GRID */
+.atlas-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-auto-rows: minmax(240px, auto);
+  gap: 16px;
+  position: relative;
+}
+@media (max-width: 1100px) { .atlas-grid { grid-template-columns: repeat(3, 1fr); } }
+@media (max-width: 760px)  { .atlas-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; } }
+@media (max-width: 460px)  { .atlas-grid { grid-template-columns: 1fr; } }
+
+.atlas-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  background: rgba(255,255,255,0.035);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 20px;
+  overflow: hidden;
+  transition: transform 320ms cubic-bezier(.2,.8,.2,1),
+              border-color 220ms ease,
+              background 220ms ease,
+              box-shadow 320ms ease,
+              opacity 280ms ease;
+  text-decoration: none;
+  color: inherit;
+  isolation: isolate;
+  min-height: 280px;
+}
+.atlas-card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(255,255,255,0.18);
+  background: rgba(255,255,255,0.06);
+  box-shadow: 0 28px 56px -20px rgba(0,0,0,0.6);
+}
+.atlas-card.hide {
+  opacity: 0.18;
+  pointer-events: none;
+  transform: scale(0.96);
+  filter: saturate(0.4);
+}
+
+/* Featured (first card spans 2x2) */
+.atlas-card.is-featured {
+  grid-column: span 2;
+  grid-row: span 2;
+}
+@media (max-width: 760px) {
+  .atlas-card.is-featured { grid-row: span 1; }
+}
+@media (max-width: 460px) {
+  .atlas-card.is-featured { grid-column: span 1; }
+}
+
+.atlas-card-img {
+  position: relative;
+  flex: 0 0 auto;
+  aspect-ratio: 16/10;
+  overflow: hidden;
+}
+.atlas-card.is-featured .atlas-card-img {
+  aspect-ratio: 4/3;
+  flex: 1 1 auto;
+  min-height: 260px;
+}
+.atlas-card-img img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  transition: transform 700ms cubic-bezier(.2,.8,.2,1);
+}
+.atlas-card:hover .atlas-card-img img { transform: scale(1.08); }
+.atlas-card-img::after {
+  content: "";
+  position: absolute; inset: 0;
+  background: linear-gradient(180deg, transparent 30%, rgba(11,18,32,0.92) 100%);
+  z-index: 1;
+  pointer-events: none;
+}
+
+.atlas-card-tag {
+  position: absolute;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 11px;
+  background: rgba(11,18,32,0.7);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255,255,255,0.18);
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: white;
+}
+.atlas-card-cat {
+  top: 14px; left: 14px;
+}
+html[dir="rtl"] .atlas-card-cat { left: auto; right: 14px; }
+.atlas-card-cat-dot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+}
+.atlas-card[data-cat="chirurgie"] .atlas-card-cat-dot { background: #F87171; }
+.atlas-card[data-cat="medecine"]  .atlas-card-cat-dot { background: #60A5FA; }
+.atlas-card[data-cat="imagerie"]  .atlas-card-cat-dot { background: #C084FC; }
+.atlas-card[data-cat="gyneco"]    .atlas-card-cat-dot { background: #F472B6; }
+.atlas-card[data-cat="pediatrie"] .atlas-card-cat-dot { background: #34D399; }
+
+.atlas-card-num {
+  top: 14px; right: 14px;
+  font-family: 'SF Mono', 'Menlo', monospace;
+  letter-spacing: 0.06em;
+}
+html[dir="rtl"] .atlas-card-num { right: auto; left: 14px; }
+
+.atlas-card-body {
+  padding: 18px 20px 20px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+.atlas-card.is-featured .atlas-card-body {
+  padding: 26px 30px 28px;
+}
+
+.atlas-card-name {
+  font-size: 17.5px;
+  font-weight: 700;
+  margin: 0 0 4px;
+  color: white;
+  letter-spacing: -0.005em;
+  line-height: 1.25;
+}
+.atlas-card.is-featured .atlas-card-name { font-size: 30px; line-height: 1.1; margin-bottom: 6px; }
+
+.atlas-card-name-sub {
+  display: block;
+  font-size: 12.5px;
+  color: rgba(255,255,255,0.5);
+  margin: 0 0 12px;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+}
+.atlas-card.is-featured .atlas-card-name-sub { font-size: 14px; margin-bottom: 16px; }
+
+.atlas-card-desc {
+  font-size: 13.5px;
+  color: rgba(255,255,255,0.65);
+  line-height: 1.55;
+  margin: 0 0 16px;
+  flex: 1;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.atlas-card.is-featured .atlas-card-desc {
+  font-size: 15.5px;
+  -webkit-line-clamp: 4;
+  margin-bottom: 22px;
+}
+
+.atlas-card-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #34D399;
+  margin-top: auto;
+  letter-spacing: 0.01em;
+}
+.atlas-card-cta svg {
+  transition: transform 280ms cubic-bezier(.2,.8,.2,1);
+}
+.atlas-card:hover .atlas-card-cta { color: #6EE7B7; }
+.atlas-card:hover .atlas-card-cta svg { transform: translateX(5px); }
+html[dir="rtl"] .atlas-card-cta svg { transform: scaleX(-1); }
+html[dir="rtl"] .atlas-card:hover .atlas-card-cta svg { transform: scaleX(-1) translateX(5px); }
+
+/* Featured chip "À la une" */
+.atlas-featured-chip {
+  position: absolute;
+  z-index: 3;
+  bottom: 14px; right: 14px;
+  padding: 5px 10px;
+  background: linear-gradient(135deg, #34D399, #60A5FA);
+  border-radius: 7px;
+  font-size: 10.5px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #0B1220;
+  box-shadow: 0 4px 14px -2px rgba(52,211,153,0.4);
+}
+html[dir="rtl"] .atlas-featured-chip { right: auto; left: 14px; }
+
+/* EMPTY STATE */
+.atlas-empty {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 60px 30px;
+  background: rgba(255,255,255,0.03);
+  border: 1px dashed rgba(255,255,255,0.15);
+  border-radius: 18px;
+  color: rgba(255,255,255,0.65);
+  display: none;
+}
+.atlas-empty.show { display: block; }
+.atlas-empty-icon {
+  width: 56px; height: 56px;
+  margin: 0 auto 16px;
+  display: grid; place-items: center;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.05);
+  color: rgba(255,255,255,0.45);
+}
+.atlas-empty h4 { font-size: 18px; font-weight: 700; color: white; margin: 0 0 6px; }
+.atlas-empty p { font-size: 14px; margin: 0 0 18px; }
+.atlas-empty button {
+  padding: 9px 18px;
+  background: white;
+  color: #0F172A;
+  border: 0; border-radius: 10px;
+  font-size: 13px; font-weight: 600;
+  cursor: pointer;
+  transition: transform 220ms;
+}
+.atlas-empty button:hover { transform: translateY(-2px); }
+
+/* Footer CTA */
+.atlas-allcta {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin: 56px auto 0;
+  padding: 14px 28px;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 999px;
+  font-size: 14.5px;
+  font-weight: 600;
+  color: white;
+  text-decoration: none;
+  transition: all 280ms cubic-bezier(.2,.8,.2,1);
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.atlas-allcta:hover {
+  background: white;
+  color: #0F172A;
+  transform: translateX(-50%) translateY(-3px);
+  box-shadow: 0 16px 40px -10px rgba(255,255,255,0.25);
+}
+.atlas-allcta svg { transition: transform 280ms; }
+.atlas-allcta:hover svg { transform: translateX(4px); }
+html[dir="rtl"] .atlas-allcta svg { transform: scaleX(-1); }
+html[dir="rtl"] .atlas-allcta:hover svg { transform: scaleX(-1) translateX(4px); }
 </style>
 </head>
 <body>
@@ -2932,56 +3439,72 @@ section.gallery-section .gallery-item-overlay {
   </a>
 </section>
 <!-- ====================================
-     SPECIALTIES — premium UX/UI
+     ATLAS MÉDICAL — Bento dark redesign
 ==================================== -->
-<section class="section" id="specialties">
+<section class="atlas" id="specialties">
+  <div class="atlas-bg-grid"></div>
+  <span class="atlas-orb atlas-orb-1"></span>
+  <span class="atlas-orb atlas-orb-2"></span>
+  <span class="atlas-orb atlas-orb-3"></span>
+
   <div class="container">
+    <div class="atlas-head reveal">
+      <span class="atlas-eyebrow">
+        <span class="atlas-eyebrow-dot"></span>
+        <span data-i18n="atlas.eyebrow">Atlas médical · 17 spécialités</span>
+      </span>
+      <h2 class="atlas-title">
+        <span data-i18n="spec.title1">Trouvez votre</span>
+        <em data-i18n="spec.title2">spécialité.</em>
+      </h2>
+      <p class="atlas-sub" data-i18n="atlas.sub">Recherchez par nom, examen ou symptôme. Filtrez par domaine. Accédez en un clic à la fiche complète.</p>
 
-    <div class="spec-header reveal">
-      <span class="eyebrow" data-i18n="spec.eyebrow">Nos services</span>
-      <h2><span data-i18n="spec.title1">Trouvez votre</span> <em data-i18n="spec.title2">spécialité.</em></h2>
-      <p class="section-sub" data-i18n="spec.sub">17 spécialités médicales et chirurgicales, filtrables par domaine. Cliquez sur une carte pour découvrir l'équipe et les services associés.</p>
+      <div class="atlas-search">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+        <input type="search" id="atlasSearch" autocomplete="off" placeholder="Cardiologue, scanner, ECG, accouchement…" aria-label="Rechercher une spécialité" />
+        <kbd class="atlas-search-kbd">⌘ K</kbd>
+      </div>
+
+      <div class="atlas-filters" id="filters" role="tablist">
+        <button class="atlas-chip is-active" data-filter="all" role="tab" aria-selected="true">
+          <span class="atlas-chip-icon" data-cat-color="all"></span>
+          <span data-i18n="filter.all">Toutes</span>
+          <span class="atlas-chip-count" data-count-for="all">17</span>
+        </button>
+        <button class="atlas-chip" data-filter="chirurgie" role="tab">
+          <span class="atlas-chip-icon" data-cat-color="chirurgie"></span>
+          <span data-i18n="filter.surgery">Chirurgie</span>
+          <span class="atlas-chip-count" data-count-for="chirurgie"></span>
+        </button>
+        <button class="atlas-chip" data-filter="medecine" role="tab">
+          <span class="atlas-chip-icon" data-cat-color="medecine"></span>
+          <span data-i18n="filter.medicine">Médecine</span>
+          <span class="atlas-chip-count" data-count-for="medecine"></span>
+        </button>
+        <button class="atlas-chip" data-filter="imagerie" role="tab">
+          <span class="atlas-chip-icon" data-cat-color="imagerie"></span>
+          <span data-i18n="filter.imaging">Imagerie</span>
+          <span class="atlas-chip-count" data-count-for="imagerie"></span>
+        </button>
+        <button class="atlas-chip" data-filter="gyneco" role="tab">
+          <span class="atlas-chip-icon" data-cat-color="gyneco"></span>
+          <span data-i18n="filter.gyneco">Gynécologie</span>
+          <span class="atlas-chip-count" data-count-for="gyneco"></span>
+        </button>
+        <button class="atlas-chip" data-filter="pediatrie" role="tab">
+          <span class="atlas-chip-icon" data-cat-color="pediatrie"></span>
+          <span data-i18n="filter.pedia">Pédiatrie</span>
+          <span class="atlas-chip-count" data-count-for="pediatrie"></span>
+        </button>
+      </div>
     </div>
 
-    <div class="spec-filters reveal" id="filters" role="tablist">
-      <button class="filter-chip is-active" data-filter="all" role="tab" aria-selected="true">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 3v18M3 12h18"/></svg>
-        <span data-i18n="filter.all">Toutes</span>
-        <span class="filter-chip-count" data-count-for="all">17</span>
-      </button>
-      <button class="filter-chip" data-filter="chirurgie" role="tab">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 17.5L20 12l-2-2-5.5 5.5"/><path d="M9 11l-6 6 4 4 6-6"/><path d="M14 6l4 4"/><circle cx="18" cy="6" r="2"/></svg>
-        <span data-i18n="filter.surgery">Chirurgie</span>
-        <span class="filter-chip-count" data-count-for="chirurgie"></span>
-      </button>
-      <button class="filter-chip" data-filter="medecine" role="tab">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 14c1.5-2 4-4 4-7a5 5 0 00-10 0c0 3 2.5 5 4 7"/><path d="M5 14c-1.5-2-4-4-4-7a5 5 0 0110 0c0 3-2.5 5-4 7"/><line x1="12" y1="14" x2="12" y2="22"/></svg>
-        <span data-i18n="filter.medicine">Médecine</span>
-        <span class="filter-chip-count" data-count-for="medecine"></span>
-      </button>
-      <button class="filter-chip" data-filter="imagerie" role="tab">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
-        <span data-i18n="filter.imaging">Imagerie</span>
-        <span class="filter-chip-count" data-count-for="imagerie"></span>
-      </button>
-      <button class="filter-chip" data-filter="gyneco" role="tab">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="9" r="6"/><line x1="12" y1="15" x2="12" y2="22"/><line x1="9" y1="19" x2="15" y2="19"/></svg>
-        <span data-i18n="filter.gyneco">Gynécologie</span>
-        <span class="filter-chip-count" data-count-for="gyneco"></span>
-      </button>
-      <button class="filter-chip" data-filter="pediatrie" role="tab">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M6 21v-2a4 4 0 014-4h4a4 4 0 014 4v2"/></svg>
-        <span data-i18n="filter.pedia">Pédiatrie</span>
-        <span class="filter-chip-count" data-count-for="pediatrie"></span>
-      </button>
-    </div>
-
-    <div class="spec-grid" id="specGrid">
+    <div class="atlas-grid" id="specGrid">
       <!-- generated by JS -->
     </div>
 
-    <div class="spec-empty" id="specEmpty">
-      <div class="spec-empty-icon">
+    <div class="atlas-empty" id="specEmpty">
+      <div class="atlas-empty-icon">
         <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
       </div>
       <h4 data-i18n="empty.title">Aucun résultat</h4>
@@ -2989,6 +3512,10 @@ section.gallery-section .gallery-item-overlay {
       <button id="resetFilters" data-i18n="empty.reset">Réinitialiser les filtres</button>
     </div>
 
+    <a href="services/" class="atlas-allcta reveal">
+      <span data-i18n="atlas.allcta">Voir l'index complet des 17 spécialités</span>
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+    </a>
   </div>
 </section>
 
@@ -3525,6 +4052,9 @@ const I18N = {
     'spec.title1': 'Trouvez votre',
     'spec.title2': 'spécialité.',
     'spec.sub': "17 spécialités médicales et chirurgicales, filtrables par domaine. Cliquez sur une carte pour découvrir l'équipe et les services associés.",
+    'atlas.eyebrow': 'Atlas médical · 17 spécialités',
+    'atlas.sub': "Recherchez par nom, examen ou symptôme. Filtrez par domaine. Accédez en un clic à la fiche complète de chaque spécialité.",
+    'atlas.allcta': "Voir l'index complet des 17 spécialités",
     'filter.all': 'Toutes',
     'filter.surgery': 'Chirurgie',
     'filter.medicine': 'Médecine',
@@ -3727,6 +4257,9 @@ const I18N = {
     'spec.title1': 'اعثر على',
     'spec.title2': 'تخصصك.',
     'spec.sub': '١٧ تخصصاً طبياً وجراحياً، يمكن تصنيفها حسب المجال. انقر على البطاقة لاكتشاف الفريق والخدمات المرتبطة.',
+    'atlas.eyebrow': 'الأطلس الطبي · ١٧ تخصصاً',
+    'atlas.sub': 'ابحث بالاسم أو الفحص أو العَرَض. فلتر حسب المجال. اضغط لمعرفة كل التفاصيل.',
+    'atlas.allcta': 'اعرض الفهرس الكامل للتخصصات الـ١٧',
     'filter.all': 'الكل',
     'filter.surgery': 'الجراحة',
     'filter.medicine': 'الطب',
@@ -3848,58 +4381,63 @@ function getSortedSpecialties() {
   return arr;
 }
 
+const SLUG_MAP = {
+  cardio: 'cardiologie', visceral: 'chirurgie-viscerale-digestive',
+  derm: 'dermatologie', endo: 'endocrinologie', gastro: 'gastro-enterologie',
+  gyneco: 'gynecologie-obstetrique', gen: 'medecine-generale',
+  nephro: 'nephrologie', neuro: 'neurologie', ophta: 'ophtalmologie',
+  orl: 'orl', pedia: 'pediatrie', pneumo: 'pneumologie',
+  psy: 'psychiatrie', radio: 'radiologie-imagerie',
+  ortho: 'traumatologie-orthopedie', uro: 'urologie'
+};
+
 function renderSpecialties() {
   const grid = document.getElementById('specGrid');
   const sorted = getSortedSpecialties();
+  // Featured = cardiologie if present, otherwise first
+  const featuredKey = sorted.find(s => s.key === 'cardio') ? 'cardio' : sorted[0].key;
+  const cta  = currentLang === 'fr' ? 'Voir la spécialité' : 'عرض التخصص';
+  const featuredLabel = currentLang === 'fr' ? 'À la une' : 'مميز';
+
   grid.innerHTML = sorted.map((s, i) => {
-    const name = currentLang === 'fr' ? s.name_fr : s.name_ar;
-    const desc = currentLang === 'fr' ? s.desc_fr : s.desc_ar;
-    const cat  = currentLang === 'fr' ? s.cat_label_fr : s.cat_label_ar;
-    const num  = String(i + 1).padStart(2, '0');
-    const cta  = currentLang === 'fr' ? 'Découvrir' : 'اكتشف';
-    const meta = currentLang === 'fr' ? 'Disponible' : 'متاح';
-    const slugMap = {
-      cardio: 'cardiologie', visceral: 'chirurgie-viscerale-digestive',
-      derm: 'dermatologie', endo: 'endocrinologie', gastro: 'gastro-enterologie',
-      gyneco: 'gynecologie-obstetrique', gen: 'medecine-generale',
-      nephro: 'nephrologie', neuro: 'neurologie', ophta: 'ophtalmologie',
-      orl: 'orl', pedia: 'pediatrie', pneumo: 'pneumologie',
-      psy: 'psychiatrie', radio: 'radiologie-imagerie',
-      ortho: 'traumatologie-orthopedie', uro: 'urologie'
-    };
-    const pageUrl = 'services/' + (slugMap[s.key] || '') + '.html';
+    const name    = currentLang === 'fr' ? s.name_fr : s.name_ar;
+    const subName = currentLang === 'fr' ? s.name_ar : s.name_fr;
+    const desc    = currentLang === 'fr' ? s.desc_fr : s.desc_ar;
+    const cat     = currentLang === 'fr' ? s.cat_label_fr : s.cat_label_ar;
+    const num     = String(i + 1).padStart(2, '0');
+    const slug    = SLUG_MAP[s.key] || '';
+    const pageUrl = (currentLang === 'ar' ? 'services/ar/' : 'services/') + slug + '.html';
+    const isFeatured = s.key === featuredKey;
+    const searchData = (s.name_fr + ' ' + s.name_ar + ' ' + s.desc_fr + ' ' + s.desc_ar + ' ' + s.cat_label_fr).toLowerCase();
+
     return `
-      <article class="spec-card" data-cat="${s.cat}" data-name="${(s.name_fr + ' ' + s.name_ar).toLowerCase()}">
-        <a href="${pageUrl}" style="display:contents;">
-          <div class="spec-img">
-            <img src="${s.img}" alt="${name} — Clinique Achifaa Oujda" loading="lazy" width="600" height="450" />
-            <span class="spec-img-overlay"></span>
-            <span class="spec-num">${num} / 17</span>
-            <span class="spec-cat">${cat}</span>
-          </div>
-          <div class="spec-body">
-            <h3 class="spec-name">${name}</h3>
-            <p class="spec-desc">${desc}</p>
-            <div class="spec-foot">
-              <span class="spec-meta">
-                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
-                ${meta}
-              </span>
-              <span class="spec-arrow">
-                <span>${cta}</span>
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
-              </span>
-            </div>
-          </div>
-        </a>
-      </article>
+      <a class="atlas-card${isFeatured ? ' is-featured' : ''}" href="${pageUrl}" data-cat="${s.cat}" data-name="${searchData}">
+        <div class="atlas-card-img">
+          <img src="${s.img}" alt="${name} — Clinique Achifaa Oujda" loading="lazy" width="600" height="450" />
+          <span class="atlas-card-tag atlas-card-cat">
+            <span class="atlas-card-cat-dot"></span>
+            <span>${cat}</span>
+          </span>
+          <span class="atlas-card-tag atlas-card-num">${num} / 17</span>
+          ${isFeatured ? `<span class="atlas-featured-chip">★ ${featuredLabel}</span>` : ''}
+        </div>
+        <div class="atlas-card-body">
+          <h3 class="atlas-card-name">${name}</h3>
+          <span class="atlas-card-name-sub">${subName}</span>
+          <p class="atlas-card-desc">${desc}</p>
+          <span class="atlas-card-cta">
+            <span>${cta}</span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+          </span>
+        </div>
+      </a>
     `;
   }).join('');
   applyFilter();
 }
 
 function applyFilter() {
-  const cards = document.querySelectorAll('.spec-card');
+  const cards = document.querySelectorAll('.atlas-card, .spec-card');
   let visible = 0;
   cards.forEach(card => {
     const matchCat = currentFilter === 'all' || card.dataset.cat === currentFilter;
@@ -3983,11 +4521,11 @@ document.getElementById('langToggle').addEventListener('click', () => {
   applyLang(currentLang === 'fr' ? 'ar' : 'fr');
 });
 
-// Filter chips
+// Filter chips (Atlas + legacy support)
 document.getElementById('filters').addEventListener('click', (e) => {
-  const btn = e.target.closest('.filter-chip');
+  const btn = e.target.closest('.atlas-chip, .filter-chip');
   if (!btn) return;
-  document.querySelectorAll('.filter-chip').forEach(p => {
+  document.querySelectorAll('.atlas-chip, .filter-chip').forEach(p => {
     p.classList.remove('is-active');
     p.setAttribute('aria-selected', 'false');
   });
@@ -3997,7 +4535,44 @@ document.getElementById('filters').addEventListener('click', (e) => {
   applyFilter();
 });
 
-// Search/sort/view toolbar removed — no handlers needed
+// Atlas live search + Cmd/Ctrl-K shortcut
+(function() {
+  const input = document.getElementById('atlasSearch');
+  if (!input) return;
+  let t;
+  input.addEventListener('input', (e) => {
+    clearTimeout(t);
+    t = setTimeout(() => {
+      currentSearch = e.target.value.trim();
+      applyFilter();
+    }, 90);
+  });
+  // Cmd/Ctrl-K to focus
+  document.addEventListener('keydown', (e) => {
+    if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
+      e.preventDefault();
+      input.focus();
+      input.select();
+    }
+    // Escape clears
+    if (e.key === 'Escape' && document.activeElement === input) {
+      input.value = '';
+      currentSearch = '';
+      applyFilter();
+      input.blur();
+    }
+  });
+  // Update placeholder per language
+  const updatePlaceholder = () => {
+    input.placeholder = currentLang === 'ar'
+      ? 'طبيب القلب، سكانير، تخطيط القلب، الولادة…'
+      : 'Cardiologue, scanner, ECG, accouchement…';
+  };
+  updatePlaceholder();
+  // Re-apply on lang change
+  const obs = new MutationObserver(updatePlaceholder);
+  obs.observe(document.documentElement, { attributes: true, attributeFilter: ['lang'] });
+})();
 
 // FAQ accordion (button-driven for a11y)
 const faqList = document.getElementById('faqList');
