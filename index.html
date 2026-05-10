@@ -3008,22 +3008,20 @@ html[dir="rtl"] .atlas-search-kbd { right: auto; left: 16px; }
   color: white;
 }
 
-/* GRID */
+/* LIST — vertical editorial rows */
 .atlas-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  grid-auto-rows: minmax(240px, auto);
-  gap: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
   position: relative;
 }
-@media (max-width: 1100px) { .atlas-grid { grid-template-columns: repeat(3, 1fr); } }
-@media (max-width: 760px)  { .atlas-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; } }
-@media (max-width: 460px)  { .atlas-grid { grid-template-columns: 1fr; } }
 
 .atlas-card {
   position: relative;
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: 88px 220px 1fr auto;
+  align-items: stretch;
+  gap: 0;
   background: rgba(255,255,255,0.035);
   border: 1px solid rgba(255,255,255,0.08);
   border-radius: 20px;
@@ -3036,43 +3034,78 @@ html[dir="rtl"] .atlas-search-kbd { right: auto; left: 16px; }
   text-decoration: none;
   color: inherit;
   isolation: isolate;
-  min-height: 280px;
+  min-height: 140px;
 }
+.atlas-card::before {
+  content: "";
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 4px;
+  background: rgba(255,255,255,0.1);
+  transition: background 280ms ease, width 280ms ease;
+  z-index: 2;
+}
+html[dir="rtl"] .atlas-card::before { left: auto; right: 0; }
+.atlas-card[data-cat="chirurgie"]::before { background: #F87171; }
+.atlas-card[data-cat="medecine"]::before  { background: #60A5FA; }
+.atlas-card[data-cat="imagerie"]::before  { background: #C084FC; }
+.atlas-card[data-cat="gyneco"]::before    { background: #F472B6; }
+.atlas-card[data-cat="pediatrie"]::before { background: #34D399; }
+
 .atlas-card:hover {
-  transform: translateY(-6px);
-  border-color: rgba(255,255,255,0.18);
+  transform: translateX(6px);
+  border-color: rgba(255,255,255,0.22);
   background: rgba(255,255,255,0.06);
-  box-shadow: 0 28px 56px -20px rgba(0,0,0,0.6);
+  box-shadow: 0 20px 48px -16px rgba(0,0,0,0.5);
 }
+html[dir="rtl"] .atlas-card:hover { transform: translateX(-6px); }
+.atlas-card:hover::before { width: 6px; }
+
 .atlas-card.hide {
-  opacity: 0.18;
+  opacity: 0.2;
   pointer-events: none;
-  transform: scale(0.96);
-  filter: saturate(0.4);
+  transform: scale(0.98);
+  filter: saturate(0.3);
 }
 
-/* Featured (first card spans 2x2) */
+/* Featured — bigger row */
 .atlas-card.is-featured {
-  grid-column: span 2;
-  grid-row: span 2;
+  grid-template-columns: 110px 320px 1fr auto;
+  min-height: 200px;
+  background: linear-gradient(135deg, rgba(52,211,153,0.05), rgba(96,165,250,0.05));
+  border-color: rgba(52,211,153,0.25);
 }
-@media (max-width: 760px) {
-  .atlas-card.is-featured { grid-row: span 1; }
-}
-@media (max-width: 460px) {
-  .atlas-card.is-featured { grid-column: span 1; }
+.atlas-card.is-featured:hover {
+  border-color: rgba(52,211,153,0.5);
+  background: linear-gradient(135deg, rgba(52,211,153,0.08), rgba(96,165,250,0.08));
 }
 
+/* Big number cell */
+.atlas-card-num-big {
+  display: grid;
+  place-items: center;
+  font-family: 'SF Mono', 'Menlo', monospace;
+  font-size: 36px;
+  font-weight: 800;
+  color: rgba(255,255,255,0.25);
+  letter-spacing: -0.02em;
+  background: rgba(255,255,255,0.02);
+  border-right: 1px solid rgba(255,255,255,0.06);
+  transition: color 280ms ease;
+  position: relative;
+}
+.atlas-card.is-featured .atlas-card-num-big { font-size: 48px; }
+.atlas-card:hover .atlas-card-num-big { color: rgba(255,255,255,0.5); }
+html[dir="rtl"] .atlas-card-num-big {
+  border-right: 0;
+  border-left: 1px solid rgba(255,255,255,0.06);
+}
+
+/* Image cell */
 .atlas-card-img {
   position: relative;
-  flex: 0 0 auto;
-  aspect-ratio: 16/10;
   overflow: hidden;
-}
-.atlas-card.is-featured .atlas-card-img {
-  aspect-ratio: 4/3;
-  flex: 1 1 auto;
-  min-height: 260px;
+  background: #0B1220;
 }
 .atlas-card-img img {
   width: 100%; height: 100%;
@@ -3083,31 +3116,43 @@ html[dir="rtl"] .atlas-search-kbd { right: auto; left: 16px; }
 .atlas-card-img::after {
   content: "";
   position: absolute; inset: 0;
-  background: linear-gradient(180deg, transparent 30%, rgba(11,18,32,0.92) 100%);
+  background: linear-gradient(90deg, transparent 60%, rgba(11,18,32,0.4) 100%);
   z-index: 1;
   pointer-events: none;
 }
+html[dir="rtl"] .atlas-card-img::after {
+  background: linear-gradient(270deg, transparent 60%, rgba(11,18,32,0.4) 100%);
+}
 
-.atlas-card-tag {
-  position: absolute;
-  z-index: 2;
+/* Body cell */
+.atlas-card-body {
+  padding: 20px 26px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-width: 0;
+}
+.atlas-card.is-featured .atlas-card-body { padding: 26px 32px; }
+
+.atlas-card-tag-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+.atlas-card-cat {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  padding: 5px 11px;
-  background: rgba(11,18,32,0.7);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255,255,255,0.18);
+  padding: 4px 10px;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.1);
   border-radius: 999px;
   font-size: 11px;
   font-weight: 700;
   letter-spacing: 0.04em;
-  color: white;
+  color: rgba(255,255,255,0.85);
 }
-.atlas-card-cat {
-  top: 14px; left: 14px;
-}
-html[dir="rtl"] .atlas-card-cat { left: auto; right: 14px; }
 .atlas-card-cat-dot {
   width: 6px; height: 6px;
   border-radius: 50%;
@@ -3119,82 +3164,92 @@ html[dir="rtl"] .atlas-card-cat { left: auto; right: 14px; }
 .atlas-card[data-cat="pediatrie"] .atlas-card-cat-dot { background: #34D399; }
 
 .atlas-card-num {
-  top: 14px; right: 14px;
+  display: inline-flex;
+  padding: 4px 10px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 999px;
   font-family: 'SF Mono', 'Menlo', monospace;
+  font-size: 10.5px;
+  font-weight: 700;
+  color: rgba(255,255,255,0.55);
   letter-spacing: 0.06em;
-}
-html[dir="rtl"] .atlas-card-num { right: auto; left: 14px; }
-
-.atlas-card-body {
-  padding: 18px 20px 20px;
-  display: flex;
-  flex-direction: column;
-  flex: 1;
-}
-.atlas-card.is-featured .atlas-card-body {
-  padding: 26px 30px 28px;
 }
 
 .atlas-card-name {
-  font-size: 17.5px;
+  font-size: 19px;
   font-weight: 700;
-  margin: 0 0 4px;
+  margin: 0 0 2px;
   color: white;
-  letter-spacing: -0.005em;
-  line-height: 1.25;
+  letter-spacing: -0.01em;
+  line-height: 1.2;
 }
-.atlas-card.is-featured .atlas-card-name { font-size: 30px; line-height: 1.1; margin-bottom: 6px; }
+.atlas-card.is-featured .atlas-card-name { font-size: 26px; }
 
 .atlas-card-name-sub {
   display: block;
-  font-size: 12.5px;
+  font-size: 13px;
   color: rgba(255,255,255,0.5);
-  margin: 0 0 12px;
+  margin: 0 0 10px;
   font-weight: 500;
-  letter-spacing: 0.01em;
 }
-.atlas-card.is-featured .atlas-card-name-sub { font-size: 14px; margin-bottom: 16px; }
+.atlas-card.is-featured .atlas-card-name-sub { font-size: 15px; margin-bottom: 12px; }
 
 .atlas-card-desc {
   font-size: 13.5px;
   color: rgba(255,255,255,0.65);
   line-height: 1.55;
-  margin: 0 0 16px;
-  flex: 1;
+  margin: 0;
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
 .atlas-card.is-featured .atlas-card-desc {
-  font-size: 15.5px;
-  -webkit-line-clamp: 4;
-  margin-bottom: 22px;
+  font-size: 15px;
+  -webkit-line-clamp: 3;
 }
 
+/* Hide the absolute-positioned tag (was used in bento) */
+.atlas-card-tag.atlas-card-cat:not(.atlas-card-tag-row .atlas-card-cat),
+.atlas-card-tag.atlas-card-num:not(.atlas-card-tag-row .atlas-card-num) { display: none; }
+
+/* CTA cell */
 .atlas-card-cta {
-  display: inline-flex;
+  display: flex;
   align-items: center;
-  gap: 6px;
+  justify-content: center;
+  gap: 8px;
+  padding: 0 28px;
   font-size: 13px;
   font-weight: 600;
   color: #34D399;
-  margin-top: auto;
   letter-spacing: 0.01em;
+  border-left: 1px solid rgba(255,255,255,0.06);
+  background: rgba(255,255,255,0.02);
+  transition: background 280ms ease, color 280ms ease;
+  white-space: nowrap;
+}
+html[dir="rtl"] .atlas-card-cta {
+  border-left: 0;
+  border-right: 1px solid rgba(255,255,255,0.06);
 }
 .atlas-card-cta svg {
   transition: transform 280ms cubic-bezier(.2,.8,.2,1);
 }
-.atlas-card:hover .atlas-card-cta { color: #6EE7B7; }
-.atlas-card:hover .atlas-card-cta svg { transform: translateX(5px); }
+.atlas-card:hover .atlas-card-cta {
+  color: #6EE7B7;
+  background: rgba(52,211,153,0.06);
+}
+.atlas-card:hover .atlas-card-cta svg { transform: translateX(6px); }
 html[dir="rtl"] .atlas-card-cta svg { transform: scaleX(-1); }
-html[dir="rtl"] .atlas-card:hover .atlas-card-cta svg { transform: scaleX(-1) translateX(5px); }
+html[dir="rtl"] .atlas-card:hover .atlas-card-cta svg { transform: scaleX(-1) translateX(6px); }
 
-/* Featured chip "À la une" */
+/* Featured chip */
 .atlas-featured-chip {
   position: absolute;
   z-index: 3;
-  bottom: 14px; right: 14px;
+  top: 14px; right: 14px;
   padding: 5px 10px;
   background: linear-gradient(135deg, #34D399, #60A5FA);
   border-radius: 7px;
@@ -3206,6 +3261,60 @@ html[dir="rtl"] .atlas-card:hover .atlas-card-cta svg { transform: scaleX(-1) tr
   box-shadow: 0 4px 14px -2px rgba(52,211,153,0.4);
 }
 html[dir="rtl"] .atlas-featured-chip { right: auto; left: 14px; }
+
+/* RESPONSIVE — collapse to 2 columns then 1 */
+@media (max-width: 980px) {
+  .atlas-card {
+    grid-template-columns: 70px 180px 1fr;
+    min-height: 130px;
+  }
+  .atlas-card.is-featured {
+    grid-template-columns: 90px 240px 1fr;
+    min-height: 170px;
+  }
+  .atlas-card-cta {
+    display: none;
+  }
+}
+@media (max-width: 720px) {
+  .atlas-card {
+    grid-template-columns: 60px 1fr;
+    grid-template-rows: auto auto;
+    min-height: auto;
+  }
+  .atlas-card-img {
+    grid-column: 1 / -1;
+    grid-row: 2;
+    aspect-ratio: 16/9;
+    max-height: 180px;
+    order: 2;
+  }
+  .atlas-card-num-big {
+    font-size: 28px;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+  .atlas-card-body {
+    grid-column: 2 / -1;
+    grid-row: 1;
+    padding: 18px 20px;
+  }
+  .atlas-card.is-featured {
+    grid-template-columns: 70px 1fr;
+  }
+  .atlas-card.is-featured .atlas-card-num-big { font-size: 36px; }
+  .atlas-card.is-featured .atlas-card-name { font-size: 22px; }
+}
+@media (max-width: 460px) {
+  .atlas-card { grid-template-columns: 1fr; }
+  .atlas-card-num-big {
+    grid-column: 1 / -1;
+    aspect-ratio: auto;
+    height: 50px;
+    border-right: 0;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+  .atlas-card-body { grid-column: 1; padding: 16px 18px; }
+}
 
 /* EMPTY STATE */
 .atlas-empty {
@@ -4412,23 +4521,26 @@ function renderSpecialties() {
 
     return `
       <a class="atlas-card${isFeatured ? ' is-featured' : ''}" href="${pageUrl}" data-cat="${s.cat}" data-name="${searchData}">
+        <div class="atlas-card-num-big">${num}</div>
         <div class="atlas-card-img">
           <img src="${s.img}" alt="${name} — Clinique Achifaa Oujda" loading="lazy" width="600" height="450" />
-          <span class="atlas-card-tag atlas-card-cat">
-            <span class="atlas-card-cat-dot"></span>
-            <span>${cat}</span>
-          </span>
-          <span class="atlas-card-tag atlas-card-num">${num} / 17</span>
           ${isFeatured ? `<span class="atlas-featured-chip">★ ${featuredLabel}</span>` : ''}
         </div>
         <div class="atlas-card-body">
+          <div class="atlas-card-tag-row">
+            <span class="atlas-card-cat">
+              <span class="atlas-card-cat-dot"></span>
+              <span>${cat}</span>
+            </span>
+            <span class="atlas-card-num">${num} / 17</span>
+          </div>
           <h3 class="atlas-card-name">${name}</h3>
           <span class="atlas-card-name-sub">${subName}</span>
           <p class="atlas-card-desc">${desc}</p>
-          <span class="atlas-card-cta">
-            <span>${cta}</span>
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
-          </span>
+        </div>
+        <div class="atlas-card-cta">
+          <span>${cta}</span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
         </div>
       </a>
     `;
