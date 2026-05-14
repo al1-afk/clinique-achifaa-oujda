@@ -464,6 +464,26 @@ html[dir="rtl"] .card.has-photo:hover .card-link svg { transform: scaleX(-1) tra
 .step p { font-size: 14px; color: var(--text-muted); margin: 0; }
 
 /* ====== INFO TABLE ====== */
+/* ====== BIDI: keep phone numbers LTR inside Arabic context ====== */
+[href^="tel:"],
+[href*="wa.me"],
+.info-table td,
+.footer-contact div {
+  unicode-bidi: plaintext;
+}
+html[dir="rtl"] [href^="tel:"],
+html[dir="rtl"] [href*="wa.me"] {
+  direction: ltr;
+  unicode-bidi: embed;
+  display: inline-block;
+}
+/* Phone numbers in tables — force LTR but keep RTL header alignment */
+html[dir="rtl"] .info-table td:has([href^="tel:"]),
+html[dir="rtl"] .info-table td:has([href*="wa.me"]) {
+  direction: ltr;
+  text-align: right;
+}
+
 .info-table {
   width: 100%;
   border-collapse: collapse;

@@ -63,33 +63,47 @@
     });
   }
 
-  // Lang toggle (page-level — sends back to home with ?lang=ar)
-  const langToggle = document.getElementById('langToggle');
-  if (langToggle) {
-    langToggle.addEventListener('click', () => {
-      const url = new URL(window.location.href);
-      const isAr = url.searchParams.get('lang') === 'ar' || document.documentElement.lang === 'ar';
-      if (isAr) url.searchParams.delete('lang');
-      else      url.searchParams.set('lang', 'ar');
-      window.location.href = url.toString();
+  // Persist the page's language as the user preference, so when they
+  // navigate to the homepage we can auto-apply Arabic again.
+  try {
+    const pageLang = document.documentElement.lang === 'ar' ? 'ar' : 'fr';
+    localStorage.setItem('lang', pageLang);
+  } catch (e) {}
+
+  // Service-page language toggle — anchor link redirects between
+  // /services/X.html and /services/ar/X.html. We just intercept the
+  // click to persist the user's choice in localStorage before navigating.
+  const langAnchor = document.querySelector('a.lang-toggle');
+  if (langAnchor) {
+    langAnchor.addEventListener('click', () => {
+      const goingToAr = /\bar\//.test(langAnchor.getAttribute('href') || '');
+      try { localStorage.setItem('lang', goingToAr ? 'ar' : 'fr'); } catch (e) {}
     });
-    // Update label based on current lang
+  }
+
+  // Fallback button toggle (kept for compatibility with any page using <button id="langToggle">)
+  const langToggleBtn = document.getElementById('langToggle');
+  if (langToggleBtn && langToggleBtn.tagName === 'BUTTON') {
+    langToggleBtn.addEventListener('click', () => {
+      const path = window.location.pathname;
+      const isAr = /\/services\/ar\//.test(path) || document.documentElement.lang === 'ar';
+      let nextHref;
+      if (isAr) {
+        nextHref = path.replace(/\/services\/ar\//, '/services/');
+      } else if (/\/services\//.test(path)) {
+        nextHref = path.replace(/\/services\//, '/services/ar/');
+      } else {
+        const url = new URL(window.location.href);
+        url.searchParams.set('lang', 'ar');
+        nextHref = url.toString();
+      }
+      try { localStorage.setItem('lang', isAr ? 'fr' : 'ar'); } catch (e) {}
+      window.location.href = nextHref;
+    });
     const label = document.getElementById('langLabel');
     if (label) {
-      const isAr = new URLSearchParams(window.location.search).get('lang') === 'ar' || document.documentElement.lang === 'ar';
+      const isAr = document.documentElement.lang === 'ar';
       label.textContent = isAr ? 'Français' : 'العربية';
     }
   }
-
-  // Apply ?lang=ar — switch direction + use Arabic translations injected via data-ar
-  (function applyLangFromUrl() {
-    const lang = new URLSearchParams(window.location.search).get('lang');
-    if (lang !== 'ar') return;
-    document.documentElement.lang = 'ar';
-    document.documentElement.dir = 'rtl';
-    document.querySelectorAll('[data-ar]').forEach(el => {
-      const ar = el.getAttribute('data-ar');
-      if (ar) el.innerHTML = ar;
-    });
-  })();
 })();

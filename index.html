@@ -77,9 +77,6 @@
       ],
       "description": "Clinique privée multidisciplinaire à Oujda, région de l'Oriental. 17 spécialités médicales et chirurgicales, scanner Siemens SOMATOM, bloc opératoire moderne, urgences 24/7.",
       "telephone": "+212536700000",
-      "priceRange": "$$",
-      "currenciesAccepted": "MAD",
-      "paymentAccepted": "Espèces, Carte bancaire, Chèque, CNSS, CNOPS, RMA, Saham, AXA",
       "address": {
         "@type": "PostalAddress",
         "streetAddress": "Quartier Hay Salam",
@@ -3032,6 +3029,17 @@ html[dir="rtl"] .eyebrow { letter-spacing: 0.08em; }
 html[dir="rtl"] .copyright,
 html[dir="rtl"] .footer-grid { direction: rtl; }
 
+/* ====== BIDI: phone numbers stay LTR inside Arabic context ====== */
+html[dir="rtl"] [href^="tel:"],
+html[dir="rtl"] [href*="wa.me"],
+html[dir="rtl"] .faq-urgence-phone-num,
+html[dir="rtl"] .appt-info-item span {
+  direction: ltr;
+  unicode-bidi: embed;
+  display: inline-block;
+}
+html[dir="rtl"] .footer-contact div { unicode-bidi: plaintext; }
+
 /* =========================================
    RESPONSIVE
 ========================================= */
@@ -3443,7 +3451,7 @@ section.gallery-section .gallery-item-overlay {
               <li><a href="services/neurologie.html" data-i18n="spec.neuro">Neurologie</a></li>
               <li><a href="services/gastro-enterologie.html" data-i18n="spec.gastro">Gastro-entérologie</a></li>
               <li><a href="services/nephrologie.html" data-i18n="spec.nephro">Néphrologie</a></li>
-              <li><a href="services/" style="font-weight:700;color:var(--green-med);">→ Toutes les spécialités</a></li>
+              <li><a href="services/" style="font-weight:700;color:var(--green-med);" data-i18n="nav.all_specialties">→ Toutes les spécialités</a></li>
             </ul>
           </div>
         </div>
@@ -3483,7 +3491,7 @@ section.gallery-section .gallery-item-overlay {
     </div>
     <ul class="mobile-nav-list">
       <li><a href="#specialties" data-i18n="nav.specialties">Spécialités</a></li>
-      <li><a href="services/">Toutes les spécialités</a></li>
+      <li><a href="services/" data-i18n="nav.all_specialties_plain">Toutes les spécialités</a></li>
       <li><a href="#about" data-i18n="nav.about">À propos</a></li>
       <li><a href="#gallery" data-i18n="nav.news">Établissement</a></li>
       <li><a href="#faq" data-i18n="nav.faq">FAQ</a></li>
@@ -3563,12 +3571,12 @@ section.gallery-section .gallery-item-overlay {
     <!-- Header row -->
     <header class="sx-top reveal">
       <div class="sx-top-text">
-        <span class="eyebrow">Nos spécialités</span>
-        <h2>Des soins spécialisés, <em>adaptés à vos besoins.</em></h2>
-        <p class="section-sub">Découvrez nos départements médicaux et chirurgicaux.</p>
+        <span class="eyebrow" data-i18n="sx.eyebrow">Nos spécialités</span>
+        <h2 data-i18n="sx.title">Des soins spécialisés, <em>adaptés à vos besoins.</em></h2>
+        <p class="section-sub" data-i18n="sx.sub">Découvrez nos départements médicaux et chirurgicaux.</p>
       </div>
       <a class="sx-top-link" href="services/">
-        <span>Voir toutes les spécialités</span>
+        <span data-i18n="sx.all">Voir toutes les spécialités</span>
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
       </a>
     </header>
@@ -3590,9 +3598,9 @@ section.gallery-section .gallery-item-overlay {
     <!-- CTA banner -->
     <aside class="sx-cta reveal">
       <div class="sx-cta-body">
-        <span class="sx-cta-eyebrow">Notre équipe est là pour</span>
-        <h3 class="sx-cta-title">Vous accompagner <em>à chaque étape.</em></h3>
-        <p class="sx-cta-text">Prenez rendez-vous en ligne ou contactez notre standard. Nous vous répondrons dans les plus brefs délais.</p>
+        <span class="sx-cta-eyebrow" data-i18n="sxcta.eyebrow">Notre équipe est là pour</span>
+        <h3 class="sx-cta-title" data-i18n="sxcta.title">Vous accompagner <em>à chaque étape.</em></h3>
+        <p class="sx-cta-text" data-i18n="sxcta.text">Prenez rendez-vous en ligne ou contactez notre standard. Nous vous répondrons dans les plus brefs délais.</p>
       </div>
       <div class="sx-cta-actions">
         <a class="sx-cta-card" href="#appointment">
@@ -3600,8 +3608,8 @@ section.gallery-section .gallery-item-overlay {
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
           </span>
           <span class="sx-cta-card-text">
-            <strong>Prendre RDV</strong>
-            <small>Réservation en ligne</small>
+            <strong data-i18n="sxcta.rdv">Prendre RDV</strong>
+            <small data-i18n="sxcta.rdv.sub">Réservation en ligne</small>
           </span>
         </a>
         <a class="sx-cta-card sx-cta-card-green" href="tel:+212536700000">
@@ -3609,7 +3617,7 @@ section.gallery-section .gallery-item-overlay {
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
           </span>
           <span class="sx-cta-card-text">
-            <strong>Contactez-nous</strong>
+            <strong data-i18n="sxcta.contact">Contactez-nous</strong>
             <small>+212 5 36 68 00 00</small>
           </span>
         </a>
@@ -3762,10 +3770,10 @@ section.gallery-section .gallery-item-overlay {
         <div class="faq-urgence-bg" aria-hidden="true"></div>
         <span class="faq-urgence-eyebrow">
           <span class="faq-urgence-dot"></span>
-          Urgences 24/7
+          <span data-i18n="urg.eyebrow">Urgences 24/7</span>
         </span>
-        <h3 class="faq-urgence-title">Une urgence&nbsp;? <em>Nous sommes là pour vous.</em></h3>
-        <p class="faq-urgence-text">Service d'urgences ouvert 24h/24, 7j/7. Médecins urgentistes, scanner et bloc opératoire opérationnels en permanence.</p>
+        <h3 class="faq-urgence-title" data-i18n="urg.title">Une urgence&nbsp;? <em>Nous sommes là pour vous.</em></h3>
+        <p class="faq-urgence-text" data-i18n="urg.text">Service d'urgences ouvert 24h/24, 7j/7. Médecins urgentistes, scanner et bloc opératoire opérationnels en permanence.</p>
         <a class="faq-urgence-phone" href="tel:+212536700000">
           <span class="faq-urgence-phone-icon" aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
@@ -3773,7 +3781,7 @@ section.gallery-section .gallery-item-overlay {
           <span class="faq-urgence-phone-num">+212 5 36 68 00 00</span>
         </a>
         <a class="faq-urgence-cta" href="tel:+212536700000">
-          <span>Contactez la clinique</span>
+          <span data-i18n="urg.cta">Contactez la clinique</span>
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
         </a>
       </aside>
@@ -3842,24 +3850,24 @@ section.gallery-section .gallery-item-overlay {
             <label for="f-spec" data-i18n="form.spec">Spécialité</label>
             <select id="f-spec" name="Spécialité" required>
               <option value="" data-i18n="form.choose">— Choisir —</option>
-              <option>Cardiologie</option>
-              <option>Chirurgie viscérale et digestive</option>
-              <option>Dermatologie</option>
-              <option>Endocrinologie</option>
-              <option>Gastro-entérologie</option>
-              <option>Gynécologie &amp; Obstétrique</option>
-              <option>Médecine générale</option>
-              <option>Néphrologie</option>
-              <option>Neurologie</option>
-              <option>Ophtalmologie</option>
-              <option>ORL (Oto-Rhino-Laryngologie)</option>
-              <option>Pédiatrie</option>
-              <option>Pneumologie</option>
-              <option>Psychiatrie</option>
-              <option>Radiologie &amp; Imagerie</option>
-              <option>Traumatologie &amp; orthopédie</option>
-              <option>Urologie</option>
-              <option data-i18n="form.spec.other">Autre / Je ne sais pas</option>
+              <option value="Cardiologie" data-i18n="sx.opt.cardio">Cardiologie</option>
+              <option value="Chirurgie viscérale et digestive" data-i18n="sx.opt.visceral">Chirurgie viscérale et digestive</option>
+              <option value="Dermatologie" data-i18n="sx.opt.derm">Dermatologie</option>
+              <option value="Endocrinologie" data-i18n="sx.opt.endo">Endocrinologie</option>
+              <option value="Gastro-entérologie" data-i18n="sx.opt.gastro">Gastro-entérologie</option>
+              <option value="Gynécologie & Obstétrique" data-i18n="sx.opt.gyneco">Gynécologie &amp; Obstétrique</option>
+              <option value="Médecine générale" data-i18n="sx.opt.gen">Médecine générale</option>
+              <option value="Néphrologie" data-i18n="sx.opt.nephro">Néphrologie</option>
+              <option value="Neurologie" data-i18n="sx.opt.neuro">Neurologie</option>
+              <option value="Ophtalmologie" data-i18n="sx.opt.ophta">Ophtalmologie</option>
+              <option value="ORL (Oto-Rhino-Laryngologie)" data-i18n="sx.opt.orl">ORL (Oto-Rhino-Laryngologie)</option>
+              <option value="Pédiatrie" data-i18n="sx.opt.pedia">Pédiatrie</option>
+              <option value="Pneumologie" data-i18n="sx.opt.pneumo">Pneumologie</option>
+              <option value="Psychiatrie" data-i18n="sx.opt.psy">Psychiatrie</option>
+              <option value="Radiologie & Imagerie" data-i18n="sx.opt.radio">Radiologie &amp; Imagerie</option>
+              <option value="Traumatologie & orthopédie" data-i18n="sx.opt.ortho">Traumatologie &amp; orthopédie</option>
+              <option value="Urologie" data-i18n="sx.opt.uro">Urologie</option>
+              <option value="Autre / Je ne sais pas" data-i18n="form.spec.other">Autre / Je ne sais pas</option>
             </select>
           </div>
           <div class="form-field">
@@ -3875,10 +3883,10 @@ section.gallery-section .gallery-item-overlay {
           <div class="form-field">
             <label for="f-time" data-i18n="form.time">Créneau préféré</label>
             <select id="f-time" name="Créneau">
-              <option value="">— Indifférent —</option>
-              <option>Matin (8h–12h)</option>
-              <option>Après-midi (12h–17h)</option>
-              <option>Soir (17h–20h)</option>
+              <option value="" data-i18n="form.time.any">— Indifférent —</option>
+              <option value="Matin (8h–12h)" data-i18n="form.time.morning">Matin (8h–12h)</option>
+              <option value="Après-midi (12h–17h)" data-i18n="form.time.afternoon">Après-midi (12h–17h)</option>
+              <option value="Soir (17h–20h)" data-i18n="form.time.evening">Soir (17h–20h)</option>
             </select>
           </div>
         </div>
@@ -3975,7 +3983,7 @@ section.gallery-section .gallery-item-overlay {
           <li><a href="services/pediatrie.html" data-i18n="spec.pedia">Pédiatrie</a></li>
           <li><a href="services/urologie.html" data-i18n="spec.uro">Urologie</a></li>
           <li><a href="services/radiologie-imagerie.html" data-i18n="spec.radio">Radiologie</a></li>
-          <li><a href="services/" style="color:#34D399;font-weight:600;">Toutes les 17 spécialités →</a></li>
+          <li><a href="services/" style="color:#34D399;font-weight:600;" data-i18n="footer.all_specialties">Toutes les 17 spécialités →</a></li>
         </ul>
       </div>
 
@@ -4169,6 +4177,20 @@ const I18N = {
     'cta.final.sub': 'Prenez rendez-vous en ligne ou contactez-nous directement. Notre équipe vous répond sous 24h.',
     'cta.final.btn1': 'Prendre RDV maintenant',
     'cta.final.btn2': 'WhatsApp',
+    'sx.eyebrow': 'Nos spécialités',
+    'sx.title': 'Des soins spécialisés, <em>adaptés à vos besoins.</em>',
+    'sx.sub': 'Découvrez nos départements médicaux et chirurgicaux.',
+    'sx.all': 'Voir toutes les spécialités',
+    'sxcta.eyebrow': 'Notre équipe est là pour',
+    'sxcta.title': 'Vous accompagner <em>à chaque étape.</em>',
+    'sxcta.text': 'Prenez rendez-vous en ligne ou contactez notre standard. Nous vous répondrons dans les plus brefs délais.',
+    'sxcta.rdv': 'Prendre RDV',
+    'sxcta.rdv.sub': 'Réservation en ligne',
+    'sxcta.contact': 'Contactez-nous',
+    'urg.eyebrow': 'Urgences 24/7',
+    'urg.title': 'Une urgence&nbsp;? <em>Nous sommes là pour vous.</em>',
+    'urg.text': "Service d'urgences ouvert 24h/24, 7j/7. Médecins urgentistes, scanner et bloc opératoire opérationnels en permanence.",
+    'urg.cta': 'Contactez la clinique',
     'spec.eyebrow': 'Nos services',
     'spec.title1': 'Trouvez votre',
     'spec.title2': 'spécialité.',
@@ -4247,7 +4269,35 @@ const I18N = {
     'footer.contact': 'Contact',
     'footer.addr': 'Hay Salam, Oujda<br/>Oriental, Maroc',
     'footer.rights': 'Tous droits réservés.',
-    'footer.made': "Soins d'excellence dans l'Oriental."
+    'footer.made': "Soins d'excellence dans l'Oriental.",
+    'cookie.title': 'Cookies & confidentialité',
+    'cookie.text': "Ce site utilise uniquement des cookies essentiels au bon fonctionnement. Aucun cookie publicitaire ni traceur tiers n'est déposé sans votre accord.",
+    'cookie.accept': "J'accepte",
+    'cookie.reject': 'Refuser',
+    'nav.all_specialties': '→ Toutes les spécialités',
+    'nav.all_specialties_plain': 'Toutes les spécialités',
+    'footer.all_specialties': 'Toutes les 17 spécialités →',
+    'form.time.any': '— Indifférent —',
+    'form.time.morning': 'Matin (8h–12h)',
+    'form.time.afternoon': 'Après-midi (12h–17h)',
+    'form.time.evening': 'Soir (17h–20h)',
+    'sx.opt.cardio': 'Cardiologie',
+    'sx.opt.visceral': 'Chirurgie viscérale et digestive',
+    'sx.opt.derm': 'Dermatologie',
+    'sx.opt.endo': 'Endocrinologie',
+    'sx.opt.gastro': 'Gastro-entérologie',
+    'sx.opt.gyneco': 'Gynécologie & Obstétrique',
+    'sx.opt.gen': 'Médecine générale',
+    'sx.opt.nephro': 'Néphrologie',
+    'sx.opt.neuro': 'Neurologie',
+    'sx.opt.ophta': 'Ophtalmologie',
+    'sx.opt.orl': 'ORL (Oto-Rhino-Laryngologie)',
+    'sx.opt.pedia': 'Pédiatrie',
+    'sx.opt.pneumo': 'Pneumologie',
+    'sx.opt.psy': 'Psychiatrie',
+    'sx.opt.radio': 'Radiologie & Imagerie',
+    'sx.opt.ortho': 'Traumatologie & orthopédie',
+    'sx.opt.uro': 'Urologie'
   },
   ar: {
     'brand': 'مصحة الشفاء',
@@ -4354,7 +4404,7 @@ const I18N = {
     'faq.eyebrow': 'الأسئلة الشائعة',
     'faq.title1': 'أسئلة',
     'faq.title2': 'متكررة.',
-    'faq.sub': 'لم تجد إجابتك؟ اتصل بنا على ٧٠٠٠٠٠٣٦٥ ٢١٢+ أو عبر واتساب.',
+    'faq.sub': 'لم تجد إجابتك؟ اتصل بنا على <bdi dir="ltr" style="unicode-bidi:isolate">+212 5 36 70 00 00</bdi> أو عبر واتساب.',
     'faq.cta': 'اطرح سؤالا',
     'faq.1.q': 'كيف أحجز موعدا؟',
     'faq.1.a': 'يمكنك الحجز عبر الإنترنت من خلال النموذج في الأسفل، أو هاتفيا، أو عبر واتساب. نؤكد موعدك خلال ٢٤ ساعة عمل.',
@@ -4371,6 +4421,20 @@ const I18N = {
     'cta.final.sub': 'احجز موعدك عبر الإنترنت أو اتصل بنا مباشرة. سيرد عليك فريقنا خلال ٢٤ ساعة.',
     'cta.final.btn1': 'حجز موعد الآن',
     'cta.final.btn2': 'واتساب',
+    'sx.eyebrow': 'تخصصاتنا',
+    'sx.title': 'رعاية متخصصة <em>تناسب احتياجاتك.</em>',
+    'sx.sub': 'اكتشف أقسامنا الطبية والجراحية.',
+    'sx.all': 'عرض كل التخصصات',
+    'sxcta.eyebrow': 'فريقنا هنا',
+    'sxcta.title': 'لمرافقتك <em>في كل خطوة.</em>',
+    'sxcta.text': 'احجز موعدك عبر الإنترنت أو اتصل بنا مباشرة. سيرد عليك فريقنا في أقرب وقت ممكن.',
+    'sxcta.rdv': 'حجز موعد',
+    'sxcta.rdv.sub': 'حجز عبر الإنترنت',
+    'sxcta.contact': 'اتصل بنا',
+    'urg.eyebrow': 'مستعجلات ٢٤/٧',
+    'urg.title': 'هل لديك حالة طارئة؟ <em>نحن هنا من أجلك.</em>',
+    'urg.text': 'خدمة المستعجلات مفتوحة ٢٤ ساعة على ٢٤، ٧ أيام على ٧. أطباء وسكانير وقاعة عمليات جاهزون دائماً.',
+    'urg.cta': 'اتصل بالمصحة',
     'spec.eyebrow': 'خدماتنا',
     'spec.title1': 'اعثر على',
     'spec.title2': 'تخصصك.',
@@ -4449,7 +4513,35 @@ const I18N = {
     'footer.contact': 'اتصل بنا',
     'footer.addr': 'حي السلام، وجدة<br/>جهة الشرق، المغرب',
     'footer.rights': 'جميع الحقوق محفوظة.',
-    'footer.made': 'رعاية متميزة في جهة الشرق.'
+    'footer.made': 'رعاية متميزة في جهة الشرق.',
+    'cookie.title': 'ملفات تعريف الارتباط والخصوصية',
+    'cookie.text': 'يستخدم هذا الموقع فقط ملفات تعريف الارتباط الأساسية لحسن سير العمل. لا يتم وضع أي ملف إعلاني أو متعقب تابع لجهة خارجية دون موافقتك.',
+    'cookie.accept': 'أوافق',
+    'cookie.reject': 'رفض',
+    'nav.all_specialties': '← جميع التخصصات',
+    'nav.all_specialties_plain': 'جميع التخصصات',
+    'footer.all_specialties': 'جميع التخصصات الـ17 ←',
+    'form.time.any': '— لا يهم —',
+    'form.time.morning': 'صباحاً (8ص–12ظ)',
+    'form.time.afternoon': 'بعد الظهر (12ظ–5م)',
+    'form.time.evening': 'مساءً (5م–8م)',
+    'sx.opt.cardio': 'أمراض القلب',
+    'sx.opt.visceral': 'الجراحة العامة والهضمية',
+    'sx.opt.derm': 'الأمراض الجلدية',
+    'sx.opt.endo': 'الغدد الصماء',
+    'sx.opt.gastro': 'أمراض الجهاز الهضمي',
+    'sx.opt.gyneco': 'أمراض النساء والتوليد',
+    'sx.opt.gen': 'الطب العام',
+    'sx.opt.nephro': 'أمراض الكلى',
+    'sx.opt.neuro': 'الأعصاب',
+    'sx.opt.ophta': 'طب العيون',
+    'sx.opt.orl': 'الأنف والأذن والحنجرة',
+    'sx.opt.pedia': 'طب الأطفال',
+    'sx.opt.pneumo': 'أمراض الجهاز التنفسي',
+    'sx.opt.psy': 'الطب النفسي',
+    'sx.opt.radio': 'الأشعة والتصوير الطبي',
+    'sx.opt.ortho': 'جراحة العظام والمفاصل',
+    'sx.opt.uro': 'المسالك البولية'
   }
 };
 
@@ -4708,9 +4800,15 @@ document.addEventListener('click', (e) => {
   }
 });
 
-// Lang toggle
+// Lang toggle — applies, persists in localStorage + URL ?lang=
 document.getElementById('langToggle').addEventListener('click', () => {
-  applyLang(currentLang === 'fr' ? 'ar' : 'fr');
+  const next = currentLang === 'fr' ? 'ar' : 'fr';
+  applyLang(next);
+  try { localStorage.setItem('lang', next); } catch (e) {}
+  const url = new URL(window.location.href);
+  if (next === 'ar') url.searchParams.set('lang', 'ar');
+  else url.searchParams.delete('lang');
+  window.history.replaceState({}, '', url.toString());
 });
 
 // Carousel: prev / next arrows
@@ -5112,10 +5210,13 @@ applyLang = function(lang) {
   });
 })();
 
-// Read ?lang=ar from URL on first load
+// Read language on first load: URL ?lang= wins, otherwise localStorage
 (function() {
   const urlLang = new URLSearchParams(window.location.search).get('lang');
-  if (urlLang === 'ar') applyLang('ar');
+  let stored = null;
+  try { stored = localStorage.getItem('lang'); } catch (e) {}
+  const lang = (urlLang === 'ar' || urlLang === 'fr') ? urlLang : (stored === 'ar' ? 'ar' : null);
+  if (lang === 'ar') applyLang('ar');
 })();
 
 // INIT
