@@ -79,7 +79,7 @@
       "telephone": "+212536700000",
       "address": {
         "@type": "PostalAddress",
-        "streetAddress": "Quartier Hay Salam",
+        "streetAddress": "Boulevard Al Irfane, en face du CHU Mohammed VI",
         "addressLocality": "Oujda",
         "addressRegion": "Oriental",
         "postalCode": "60000",
@@ -110,7 +110,6 @@
         "target": {"@type":"EntryPoint","urlTemplate":"https://cliniqueachifaaoujda.com/#appointment","actionPlatform":["http://schema.org/DesktopWebPlatform","http://schema.org/MobileWebPlatform"]},
         "result": {"@type":"Reservation","name":"Rendez-vous médical"}
       },
-      "founder": {"@type":"Person","name":"Dr Mohammed Taligui","jobTitle":"Directeur médical"},
       "foundingDate": "2010"
     },
     {
@@ -128,17 +127,9 @@
         {"@type":"Question","name":"Comment prendre un rendez-vous à la Clinique Achifaa Oujda ?","acceptedAnswer":{"@type":"Answer","text":"Vous pouvez réserver en ligne via le formulaire, par téléphone au +212 5 36 70 00 00, ou par WhatsApp. Nous confirmons votre RDV sous 24h ouvrées."}},
         {"@type":"Question","name":"Quelles assurances sont acceptées ?","acceptedAnswer":{"@type":"Answer","text":"CNSS, CNOPS, RMA, Saham, AXA, ainsi que la plupart des mutuelles partenaires. Tiers-payant possible avec carte d'assuré et ordonnance."}},
         {"@type":"Question","name":"Les urgences sont-elles disponibles 24/7 ?","acceptedAnswer":{"@type":"Answer","text":"Oui, le service d'urgences est ouvert 24h/24 et 7j/7, avec médecins urgentistes, scanner Siemens et bloc opératoire opérationnels en permanence."}},
-        {"@type":"Question","name":"Où se situe la Clinique Achifaa Oujda ?","acceptedAnswer":{"@type":"Answer","text":"Quartier Hay Salam, Oujda, région de l'Oriental, Maroc. Parking gratuit sur place. Accessible depuis le centre-ville."}},
+        {"@type":"Question","name":"Où se situe la Clinique Achifaa Oujda ?","acceptedAnswer":{"@type":"Answer","text":"Boulevard Al Irfane, en face du CHU Mohammed VI, Oujda, Oriental, Maroc. Parking gratuit sur place. Accessible depuis le centre-ville."}},
         {"@type":"Question","name":"Quelles spécialités médicales sont disponibles ?","acceptedAnswer":{"@type":"Answer","text":"17 spécialités : cardiologie, gynécologie-obstétrique, pédiatrie, ophtalmologie, ORL, dermatologie, urologie, traumatologie-orthopédie, chirurgie viscérale, radiologie et imagerie médicale, neurologie, gastro-entérologie, néphrologie, endocrinologie, pneumologie, psychiatrie, médecine générale."}}
       ]
-    },
-    {
-      "@type": "Person",
-      "@id": "https://cliniqueachifaaoujda.com/#dr-taligui",
-      "name": "Dr Mohammed Taligui",
-      "jobTitle": "Directeur médical",
-      "worksFor": {"@id":"https://cliniqueachifaaoujda.com/#clinic"},
-      "knowsAbout": ["Médecine clinique", "Direction médicale", "Soins multidisciplinaires"]
     },
     {
       "@type": "BreadcrumbList",
@@ -1430,33 +1421,6 @@ html[dir="rtl"] .hero-floating { right: auto; left: 24px; }
   margin: 0;
   font-weight: 500;
 }
-.about-signature {
-  display: flex; align-items: center; gap: 16px;
-  margin-top: 36px;
-  padding-top: 28px;
-  border-top: 1px solid var(--border);
-}
-.about-signature-img {
-  width: 52px; height: 52px;
-  background: linear-gradient(135deg, var(--blue-dark), var(--green-med));
-  border-radius: 50%;
-  display: grid; place-items: center;
-  color: white;
-  font-weight: 700;
-  font-size: 18px;
-  flex-shrink: 0;
-}
-.about-signature-info strong {
-  display: block;
-  font-size: 14.5px;
-  font-weight: 700;
-  color: var(--text-dark);
-}
-.about-signature-info span {
-  font-size: 12.5px;
-  color: var(--text-muted);
-}
-
 /* =========================================
    TESTIMONIALS
 ========================================= */
@@ -3255,10 +3219,6 @@ section.why .why-icon {
   box-shadow: 0 6px 16px -8px rgba(59,170,63,0.45);
 }
 
-/* About signature avatar — brand gradient */
-section.about .about-signature-img {
-  background: linear-gradient(135deg, var(--blue-dark), var(--green-med));
-}
 section.about .about-img-deco {
   background: linear-gradient(135deg, var(--green-med), var(--blue-main));
 }
@@ -3542,7 +3502,7 @@ section.gallery-section .gallery-item-overlay {
         <span><strong>+50 000</strong>&nbsp;<span data-i18n="hero.patients">patients soignés · 17 spécialités · Urgences 24/7</span></span>
       </div>
       <p class="visually-hidden">
-        Clinique Achifaa Oujda est une clinique privée multidisciplinaire située au Quartier Hay Salam, Oujda, dans la région de l'Oriental au Maroc.
+        Clinique Achifaa Oujda est une clinique privée multidisciplinaire située au Boulevard Al Irfane, en face du CHU Mohammed VI, Oujda, Oriental, Maroc.
         Fondée en 2010, elle propose 17 spécialités médicales et chirurgicales, un scanner Siemens SOMATOM, un bloc opératoire moderne, et un service d'urgences ouvert 24h/24 et 7j/7.
         La clinique est conventionnée CNSS, CNOPS, RMA, Saham et AXA. Téléphone : +212 5 36 70 00 00.
       </p>
@@ -3666,13 +3626,6 @@ section.gallery-section .gallery-item-overlay {
           </div>
         </div>
 
-        <div class="about-signature">
-          <div class="about-signature-img">DT</div>
-          <div class="about-signature-info">
-            <strong>Dr Mohammed Taligui</strong>
-            <span data-i18n="about.sig">Directeur médical · Clinique Achifaa</span>
-          </div>
-        </div>
       </div>
     </div>
   </div>
@@ -3761,7 +3714,7 @@ section.gallery-section .gallery-item-overlay {
             <span data-i18n="faq.5.q">Où se situe la clinique ?</span>
             <svg class="faq-chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
           </button>
-          <div class="faq-a"><p data-i18n="faq.5.a">Quartier Hay Salam, Oujda, région de l'Oriental, Maroc. Parking gratuit sur place. Accessible en transports en commun et à pied depuis le centre-ville.</p></div>
+          <div class="faq-a"><p data-i18n="faq.5.a">Boulevard Al Irfane, en face du CHU Mohammed VI, Oujda, Oriental, Maroc. Parking gratuit sur place. Accessible en transports en commun et à pied depuis le centre-ville.</p></div>
         </article>
       </div>
       </div><!-- /.faq-main -->
@@ -3811,7 +3764,7 @@ section.gallery-section .gallery-item-overlay {
             <div class="appt-info-item-icon">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
             </div>
-            <span data-i18n="appt.addr">Quartier Hay Salam, Oujda, Oriental, Maroc</span>
+            <span data-i18n="appt.addr">Boulevard Al Irfane, en face du CHU Mohammed VI, Oujda, Oriental, Maroc</span>
           </div>
           <div class="appt-info-item">
             <div class="appt-info-item-icon">
@@ -4004,7 +3957,7 @@ section.gallery-section .gallery-item-overlay {
         <div class="footer-contact">
           <div>
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
-            <span data-i18n="footer.addr">Hay Salam, Oujda<br/>Oriental, Maroc</span>
+            <span data-i18n="footer.addr">Bd Al Irfane (CHU Mohammed VI), Oujda<br/>Oriental, Maroc</span>
           </div>
           <div>
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.13.96.37 1.91.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.9.33 1.85.57 2.81.7A2 2 0 0122 16.92z"/></svg>
@@ -4146,7 +4099,6 @@ const I18N = {
     'about.p3.d': 'Accompagner chaque patient avec dignité, transparence et bienveillance.',
     'about.p4.t': 'Innovation',
     'about.p4.d': 'Investir continuellement dans les meilleures technologies médicales.',
-    'about.sig': 'Directeur médical · Clinique Achifaa',
     'tst.eyebrow': 'Témoignages',
     'tst.title1': 'Ce que disent',
     'tst.title2': 'nos patients.',
@@ -4171,7 +4123,7 @@ const I18N = {
     'faq.4.q': 'Proposez-vous la téléconsultation ?',
     'faq.4.a': 'Oui, pour le suivi médical et certaines spécialités. La première consultation reste cependant en présentiel pour un examen clinique complet.',
     'faq.5.q': 'Où se situe la clinique ?',
-    'faq.5.a': "Quartier Hay Salam, Oujda, région de l'Oriental, Maroc. Parking gratuit sur place. Accessible en transports en commun et à pied depuis le centre-ville.",
+    'faq.5.a': "Boulevard Al Irfane, en face du CHU Mohammed VI, Oujda, Oriental, Maroc. Parking gratuit sur place. Accessible en transports en commun et à pied depuis le centre-ville.",
     'cta.final.t1': 'Votre santé',
     'cta.final.t2': 'mérite le meilleur.',
     'cta.final.sub': 'Prenez rendez-vous en ligne ou contactez-nous directement. Notre équipe vous répond sous 24h.',
@@ -4241,7 +4193,7 @@ const I18N = {
     'appt.title2': 'en ligne.',
     'appt.text': "Réservez votre consultation en moins de 2 minutes. Notre équipe vous recontacte sous 24h pour confirmer votre rendez-vous.",
     'appt.urg': 'Urgences 24/7 :',
-    'appt.addr': 'Quartier Hay Salam, Oujda, Oriental, Maroc',
+    'appt.addr': 'Boulevard Al Irfane, en face du CHU Mohammed VI, Oujda, Oriental, Maroc',
     'appt.hours': 'Consultations : Lun–Sam · 8h–20h',
     'form.name': 'Nom complet',
     'form.tel': 'Téléphone',
@@ -4267,7 +4219,7 @@ const I18N = {
     'footer.faq': 'FAQ',
     'footer.legal': 'Mentions légales',
     'footer.contact': 'Contact',
-    'footer.addr': 'Hay Salam, Oujda<br/>Oriental, Maroc',
+    'footer.addr': 'Bd Al Irfane (CHU Mohammed VI), Oujda<br/>Oriental, Maroc',
     'footer.rights': 'Tous droits réservés.',
     'footer.made': "Soins d'excellence dans l'Oriental.",
     'cookie.title': 'Cookies & confidentialité',
@@ -4390,7 +4342,6 @@ const I18N = {
     'about.p3.d': 'مرافقة كل مريض بكرامة وشفافية ولطف.',
     'about.p4.t': 'الابتكار',
     'about.p4.d': 'الاستثمار المستمر في أفضل التقنيات الطبية.',
-    'about.sig': 'المدير الطبي · مصحة الشفاء',
     'tst.eyebrow': 'شهادات',
     'tst.title1': 'ما يقوله',
     'tst.title2': 'مرضانا.',
@@ -4415,7 +4366,7 @@ const I18N = {
     'faq.4.q': 'هل تقدمون الاستشارة عن بعد؟',
     'faq.4.a': 'نعم للمتابعة الطبية وبعض التخصصات. أما الاستشارة الأولى فتبقى حضورية لإجراء فحص سريري شامل.',
     'faq.5.q': 'أين تقع المصحة؟',
-    'faq.5.a': 'حي السلام، وجدة، جهة الشرق، المغرب. موقف سيارات مجاني. سهل الوصول من وسط المدينة.',
+    'faq.5.a': 'شارع العرفان، أمام المستشفى الجامعي محمد السادس، وجدة، جهة الشرق، المغرب. موقف سيارات مجاني. سهل الوصول من وسط المدينة.',
     'cta.final.t1': 'صحتك',
     'cta.final.t2': 'تستحق الأفضل.',
     'cta.final.sub': 'احجز موعدك عبر الإنترنت أو اتصل بنا مباشرة. سيرد عليك فريقنا خلال 24 ساعة.',
@@ -4485,7 +4436,7 @@ const I18N = {
     'appt.title2': 'عبر الإنترنت.',
     'appt.text': 'احجز استشارتك في أقل من دقيقتين. سيتصل بك فريقنا خلال 24 ساعة لتأكيد الموعد.',
     'appt.urg': 'مستعجلات 24/7:',
-    'appt.addr': 'حي السلام، وجدة، جهة الشرق، المغرب',
+    'appt.addr': 'شارع العرفان، أمام المستشفى الجامعي محمد السادس، وجدة، جهة الشرق، المغرب',
     'appt.hours': 'الاستشارات: الإثنين–السبت · 8ص–8م',
     'form.name': 'الاسم الكامل',
     'form.tel': 'الهاتف',
@@ -4511,7 +4462,7 @@ const I18N = {
     'footer.faq': 'الأسئلة الشائعة',
     'footer.legal': 'الإشعارات القانونية',
     'footer.contact': 'اتصل بنا',
-    'footer.addr': 'حي السلام، وجدة<br/>جهة الشرق، المغرب',
+    'footer.addr': 'شارع العرفان (المستشفى الجامعي محمد السادس)، وجدة<br/>جهة الشرق، المغرب',
     'footer.rights': 'جميع الحقوق محفوظة.',
     'footer.made': 'رعاية متميزة في جهة الشرق.',
     'cookie.title': 'ملفات تعريف الارتباط والخصوصية',
