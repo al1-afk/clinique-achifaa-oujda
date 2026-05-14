@@ -295,7 +295,24 @@ body {
 }
 h1, h2, h3, h4, h5, h6 { text-wrap: balance; }
 p, li { text-wrap: pretty; }
-html[dir="rtl"] body { font-family: 'Cairo', sans-serif; }
+
+/* ====== ARABIC / RTL — preserve ligatures + letter-joining ====== */
+html[dir="rtl"] body {
+  font-family: 'Cairo', 'Tajawal', 'Segoe UI', sans-serif;
+  font-feature-settings: normal;
+}
+html[dir="rtl"],
+html[dir="rtl"] *,
+html[dir="rtl"] *::before,
+html[dir="rtl"] *::after {
+  letter-spacing: 0 !important;
+  font-feature-settings: normal !important;
+  font-variant-ligatures: normal !important;
+}
+/* keep tracking on uppercase/wide labels (eyebrows, badges) — Arabic doesn't need it */
+html[dir="rtl"] .eyebrow,
+html[dir="rtl"] .brand-sub,
+html[dir="rtl"] .mobile-nav-title { letter-spacing: 0 !important; }
 img { max-width: 100%; display: block; }
 a { text-decoration: none; color: inherit; }
 button { font-family: inherit; cursor: pointer; border: 0; background: none; }
@@ -742,8 +759,9 @@ html[dir="rtl"] .hero-marquee-track { animation-direction: reverse; }
   to   { transform: translateX(-50%); }
 }
 
-/* Floating particles */
-.hero-particles {
+/* Floating particles — disabled per design choice */
+.hero-particles { display: none !important; }
+.hero-particles-disabled {
   position: absolute; inset: 0;
   pointer-events: none;
   z-index: 3;
@@ -857,13 +875,13 @@ html[dir="rtl"] .hero-hud-tr { right: auto; left: 50px; flex-direction: row; }
   animation: pulse 1.6s ease-out infinite;
 }
 
-/* Vignette + cinematic gradient */
+/* Vignette + cinematic gradient — lightened to keep building photo readable */
 .hero-clean::before {
   content: "";
   position: absolute; inset: 0;
   background:
-    radial-gradient(ellipse at center, transparent 40%, rgba(0,0,0,0.45) 100%),
-    linear-gradient(180deg, rgba(0,0,0,0.25) 0%, transparent 30%, transparent 70%, rgba(0,0,0,0.45) 100%);
+    radial-gradient(ellipse at center, transparent 55%, rgba(0,0,0,0.20) 100%),
+    linear-gradient(180deg, rgba(0,0,0,0.10) 0%, transparent 25%, transparent 75%, rgba(0,0,0,0.22) 100%);
   z-index: -2;
   pointer-events: none;
 }
@@ -887,8 +905,11 @@ html[dir="rtl"] .hero-hud-tr { right: auto; left: 50px; flex-direction: row; }
   100% { transform: translateX(220%) rotate(8deg); opacity: 0; }
 }
 
-/* Floating decorative orbs */
+/* Floating decorative orbs — disabled to keep building photo crisp */
 .hero-orb {
+  display: none !important;
+}
+.hero-orb-disabled {
   position: absolute;
   border-radius: 50%;
   filter: blur(70px);
@@ -3036,7 +3057,7 @@ html[dir="rtl"] .footer-grid { direction: rtl; }
   .footer-grid { grid-template-columns: repeat(2, 1fr); gap: 36px; }
 }
 @media (max-width: 640px) {
-  .urgence-pill span { display: none; }
+  .urgence-pill { display: none !important; }
   .nav-actions .nav-cta { display: none; }
   .nav-burger { width: 44px; height: 44px; }
   .container { width: 92%; }
@@ -4924,12 +4945,24 @@ document.querySelectorAll('.counter').forEach(el => counterIO.observe(el));
 function animateHeroTitle() {
   const title = document.getElementById('heroTitle');
   if (!title) return;
-  const text = currentLang === 'fr' ? 'Clinique Achifaa' : 'مصحة الشفاء';
+  const isArabic = currentLang !== 'fr';
+  const text = isArabic ? 'مصحة الشفاء' : 'Clinique Achifaa';
   const words = text.split(' ');
+
+  // Arabic: animate whole words only — splitting characters breaks cursive ligatures
+  if (isArabic) {
+    title.innerHTML = words.map((word, wi) => {
+      const isAccent = wi === 1;
+      return `<span class="char${isAccent ? ' gradient' : ''}" style="display:inline-block; margin-inline-end:0.3em; animation-delay:${0.4 + wi * 0.18}s">${word}</span>`;
+    }).join('');
+    return;
+  }
+
+  // French: per-character reveal (safe for Latin script)
   title.innerHTML = words.map((word, wi) => {
     const chars = [...word].map((ch, ci) => {
       const totalIdx = wi * 100 + ci;
-      const isAccent = wi === 1; // 2nd word in gradient
+      const isAccent = wi === 1;
       return `<span class="char${isAccent ? ' gradient' : ''}" style="animation-delay:${0.4 + totalIdx * 0.045}s">${ch}</span>`;
     }).join('');
     return `<span style="display:inline-block; margin-right:0.25em">${chars}</span>`;
