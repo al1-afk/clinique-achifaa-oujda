@@ -1,0 +1,40 @@
+# Apache (Hostinger) — bloque l'accès direct aux fichiers sensibles.
+
+# Bloquer .env et fichiers similaires
+<FilesMatch "^\.env|\.env\..*|\.git|composer\.(json|lock)$">
+  Require all denied
+</FilesMatch>
+
+# Bloquer accès au dossier php/ (utilisé uniquement en include)
+RedirectMatch 403 ^/php(/|$)
+
+# Forcer UTF-8
+AddDefaultCharset UTF-8
+
+# Sécurité de base
+<IfModule mod_headers.c>
+  Header set X-Content-Type-Options "nosniff"
+  Header set X-Frame-Options "SAMEORIGIN"
+  Header set Referrer-Policy "strict-origin-when-cross-origin"
+  Header set Permissions-Policy "camera=(), microphone=(), geolocation=()"
+</IfModule>
+
+# Cache des assets statiques
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType image/webp        "access plus 1 year"
+  ExpiresByType image/png         "access plus 1 year"
+  ExpiresByType image/jpeg        "access plus 1 year"
+  ExpiresByType image/svg+xml     "access plus 1 month"
+  ExpiresByType text/css          "access plus 1 month"
+  ExpiresByType application/javascript "access plus 1 month"
+  ExpiresByType font/woff2        "access plus 1 year"
+</IfModule>
+
+# Compression gzip
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/css application/javascript text/xml application/xml application/json image/svg+xml
+</IfModule>
+
+# Pages erreur
+ErrorDocument 404 /index.html

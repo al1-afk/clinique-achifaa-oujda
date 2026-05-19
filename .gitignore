@@ -6,3 +6,9 @@ Thumbs.db
 node_modules/
 .claude/
 images-original/
+
+# Secrets — never commit credentials
+.env
+.env.local
+.env.production
+php/*.log
