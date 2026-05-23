@@ -30,13 +30,17 @@ function loadEnv(string $path): array
     return $env;
 }
 $env = loadEnv(__DIR__ . '/.env');
+foreach (['SITE_URL','MAIL_TO','MAIL_FROM_NAME','MAIL_SUBJECT','SMTP_HOST','SMTP_PORT','SMTP_USER','SMTP_PASSWORD'] as $k) {
+    $v = getenv($k);
+    if ($v !== false && $v !== '') { $env[$k] = $v; }
+}
 
 $siteUrl    = $env['SITE_URL']        ?? 'https://cliniqueachifaaoujda.com';
 $mailTo     = $env['MAIL_TO']         ?? 'info@cliniqueachifaaoujda.com';
 $mailFrom   = $env['SMTP_USER']       ?? 'info@cliniqueachifaaoujda.com';
 $mailName   = $env['MAIL_FROM_NAME']  ?? 'Clinique Achifaa Oujda';
 $mailSubj   = $env['MAIL_SUBJECT']    ?? 'Nouvelle demande de RDV — Clinique Achifaa Oujda';
-$smtpHost   = $env['SMTP_HOST']       ?? 'smtp.hostinger.com';
+$smtpHost   = $env['SMTP_HOST']       ?? 'smtp.titan.email';
 $smtpPort   = (int)($env['SMTP_PORT'] ?? 465);
 $smtpUser   = $env['SMTP_USER']       ?? '';
 $smtpPass   = $env['SMTP_PASSWORD']   ?? '';
