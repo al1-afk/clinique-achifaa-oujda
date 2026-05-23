@@ -76,9 +76,13 @@ $creneau  = clean((string)($_POST['Créneau'] ?? ''),   40);
 $message  = clean((string)($_POST['Message'] ?? ''),   1500);
 $consent  = $_POST['Consentement'] ?? '';
 
+// Email is optional — if provided but invalid, just clear it instead of rejecting the form
+if ($email !== '' && !filter_var($email, FILTER_VALIDATE_EMAIL)) {
+    $email = '';
+}
+
 if (mb_strlen($nom) < 2)                                                  $errors[] = 'Nom requis (min 2 caractères).';
 if (!preg_match('/^[+0-9 ()\-]{8,20}$/', $tel))                           $errors[] = 'Numéro de téléphone invalide.';
-if ($email !== '' && !filter_var($email, FILTER_VALIDATE_EMAIL))          $errors[] = 'Email invalide.';
 if ($spec === '')                                                         $errors[] = 'Spécialité requise.';
 if (!preg_match('/^\d{4}-\d{2}-\d{2}$/', $date))                          $errors[] = 'Date invalide.';
 if (empty($consent))                                                      $errors[] = 'Consentement requis.';
@@ -144,12 +148,30 @@ try {
 } catch (Throwable $e) {
     error_log('[submit.php] Erreur envoi : ' . $e->getMessage());
     http_response_code(500);
+    $isXhr = (
+        (isset($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) === 'xmlhttprequest')
+        || (isset($_SERVER['HTTP_ACCEPT']) && stripos($_SERVER['HTTP_ACCEPT'], 'application/json') !== false)
+    );
+    if ($isXhr) {
+        header('Content-Type: application/json; charset=UTF-8');
+        echo json_encode(['ok' => false, 'error' => $e->getMessage()]);
+        exit;
+    }
     header('Content-Type: text/plain; charset=UTF-8');
     exit("Une erreur est survenue lors de l'envoi du formulaire.\n"
        . "Merci de nous appeler directement au +212 5 36 70 00 00 ou via WhatsApp.\n\n"
        . "Détail technique : " . $e->getMessage());
 }
 
-/* ========== 7. Redirection succès ========== */
+/* ========== 7. Réponse succès ========== */
+$isXhr = (
+    (isset($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) === 'xmlhttprequest')
+    || (isset($_SERVER['HTTP_ACCEPT']) && stripos($_SERVER['HTTP_ACCEPT'], 'application/json') !== false)
+);
+if ($isXhr) {
+    header('Content-Type: application/json; charset=UTF-8');
+    echo json_encode(['ok' => true]);
+    exit;
+}
 header('Location: ' . $siteUrl . '/?rdv=ok#appointment');
 exit;

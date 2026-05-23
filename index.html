@@ -2882,6 +2882,80 @@ section.appt .form-success h4 { color: var(--text-dark); }
 section.appt .form-success p  { color: var(--text-muted); }
 
 /* =========================================
+   APPOINTMENT MODALS (success + error popups)
+========================================= */
+.appt-modal {
+  position: fixed; inset: 0;
+  z-index: 9999;
+  display: none;
+  align-items: center; justify-content: center;
+  padding: 20px;
+  background: rgba(15, 23, 42, 0.55);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  animation: appt-modal-fade 240ms ease-out;
+}
+.appt-modal[aria-hidden="false"] { display: flex; }
+.appt-modal-card {
+  background: white;
+  border-radius: 18px;
+  max-width: 460px; width: 100%;
+  padding: 36px 28px 28px;
+  text-align: center;
+  box-shadow: 0 30px 80px -20px rgba(15, 23, 42, 0.35);
+  position: relative;
+  animation: appt-modal-pop 320ms cubic-bezier(.2,.8,.2,1);
+}
+.appt-modal-close {
+  position: absolute; top: 14px; inset-inline-end: 14px;
+  width: 32px; height: 32px;
+  border: none; background: #F3F4F6; color: #6B7280;
+  border-radius: 50%; cursor: pointer;
+  display: grid; place-items: center;
+  font-size: 18px; line-height: 1;
+  transition: background 160ms ease;
+}
+.appt-modal-close:hover { background: #E5E7EB; color: #111827; }
+.appt-modal-icon {
+  width: 76px; height: 76px;
+  margin: 0 auto 18px;
+  border-radius: 50%;
+  display: grid; place-items: center;
+  position: relative;
+}
+.appt-modal-icon.success { background: rgba(59,170,63,0.15); color: #3BAA3F; }
+.appt-modal-icon.error   { background: rgba(220,38,38,0.12); color: #DC2626; }
+.appt-modal-icon.success::after {
+  content: ""; position: absolute; inset: -8px;
+  border: 2px solid rgba(59,170,63,0.4);
+  border-radius: 50%;
+  animation: ring 2.4s ease-out infinite;
+}
+.appt-modal-card h4 {
+  font-size: 22px; font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--text-dark, #111827);
+  margin: 0 0 12px;
+}
+.appt-modal-card p {
+  font-size: 14.5px;
+  line-height: 1.6;
+  color: var(--text-muted, #6B7280);
+  margin: 0 0 24px;
+  max-width: 380px; margin-inline: auto;
+}
+.appt-modal-actions {
+  display: flex; gap: 10px; justify-content: center; flex-wrap: wrap;
+}
+.appt-modal-actions .btn { padding: 10px 18px; font-size: 13.5px; }
+@keyframes appt-modal-fade { from { opacity: 0 } to { opacity: 1 } }
+@keyframes appt-modal-pop {
+  from { opacity: 0; transform: translateY(20px) scale(0.96) }
+  to   { opacity: 1; transform: translateY(0) scale(1) }
+}
+body.appt-modal-open { overflow: hidden; }
+
+/* =========================================
    FOOTER
 ========================================= */
 .footer {
@@ -3776,14 +3850,9 @@ section.gallery-section .gallery-item-overlay {
       </div>
 
       <form class="appt-form reveal" id="apptForm"
-            action="https://formsubmit.co/info@cliniqueachifaaoujda.com"
+            action="submit.php"
             method="POST"
             novalidate>
-        <input type="hidden" name="_subject" value="Nouvelle demande de RDV — Clinique Achifaa Oujda" />
-        <input type="hidden" name="_template" value="table" />
-        <input type="hidden" name="_captcha" value="false" />
-        <input type="hidden" name="_next" value="https://cliniqueachifaaoujda.com/?rdv=ok#appointment" />
-        <input type="hidden" name="_autoresponse" value="Bonjour, nous avons bien reçu votre demande de rendez-vous à la Clinique Achifaa Oujda. Notre équipe vous recontactera sous 24h ouvrées pour confirmer la date et l'heure. Merci de votre confiance. — Clinique Achifaa Oujda · +212 5 36 70 00 00" />
         <input type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0;" />
 
         <div class="form-row">
@@ -3875,6 +3944,48 @@ section.gallery-section .gallery-item-overlay {
           </div>
         </div>
       </form>
+    </div>
+  </div>
+
+  <!-- Popup succès -->
+  <div class="appt-modal" id="apptModalSuccess" role="dialog" aria-modal="true" aria-labelledby="apptModalSuccessTitle" aria-hidden="true">
+    <div class="appt-modal-card">
+      <button type="button" class="appt-modal-close" aria-label="Fermer" data-appt-modal-close>&times;</button>
+      <div class="appt-modal-icon success">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+      </div>
+      <h4 id="apptModalSuccessTitle" data-i18n="modal.success.t">Merci pour votre demande de rendez-vous</h4>
+      <p data-i18n="modal.success.d">Nous avons bien reçu votre demande. Notre équipe vous contactera très prochainement pour confirmer votre rendez-vous.</p>
+      <div class="appt-modal-actions">
+        <a href="https://wa.me/212536700000" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4l-2.6-1.3c-.4-.2-.7 0-.9.2-.2.3-.6.7-.7.9-.1.2-.3.2-.5.1-.7-.4-1.6-.8-2.7-1.7-.6-.6-1.2-1.4-1.4-1.7-.1-.2 0-.3.1-.4.1-.1.2-.2.4-.4.1-.1.2-.2.3-.4.1-.2 0-.4-.1-.5L8.4 7c-.1-.4-.4-.4-.7-.4h-.6c-.2 0-.6.1-.9.4s-1.1 1.1-1.1 2.6 1.1 3 1.3 3.2c.1.2 2.2 3.4 5.3 4.7 2.6 1.1 3.2.9 3.7.8.6-.1 1.7-.7 1.9-1.4.2-.7.2-1.2.2-1.4-.1-.1-.3-.1-.5-.2zM12 0a12 12 0 00-10.3 18.1L0 24l6-1.6A12 12 0 1012 0z"/></svg>
+          <span>WhatsApp</span>
+        </a>
+        <button type="button" class="btn btn-blue" data-appt-modal-close>
+          <span data-i18n="modal.close">Fermer</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Popup erreur -->
+  <div class="appt-modal" id="apptModalError" role="dialog" aria-modal="true" aria-labelledby="apptModalErrorTitle" aria-hidden="true">
+    <div class="appt-modal-card">
+      <button type="button" class="appt-modal-close" aria-label="Fermer" data-appt-modal-close>&times;</button>
+      <div class="appt-modal-icon error">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="13"/><line x1="12" y1="16.5" x2="12.01" y2="16.5"/></svg>
+      </div>
+      <h4 id="apptModalErrorTitle" data-i18n="modal.error.t">Envoi impossible</h4>
+      <p data-i18n="modal.error.d">Une erreur est survenue lors de l'envoi. Merci de réessayer ou de nous contacter directement par téléphone ou WhatsApp.</p>
+      <div class="appt-modal-actions">
+        <a href="tel:+212536700000" class="btn btn-primary">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.13.96.37 1.91.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.9.33 1.85.57 2.81.7A2 2 0 0122 16.92z"/></svg>
+          <span>+212 5 36 70 00 00</span>
+        </a>
+        <button type="button" class="btn btn-blue" data-appt-modal-close>
+          <span data-i18n="modal.retry">Réessayer</span>
+        </button>
+      </div>
     </div>
   </div>
 </section>
@@ -4206,6 +4317,12 @@ const I18N = {
     'form.submit': 'Confirmer le rendez-vous',
     'form.success.t': 'Votre demande a été envoyée ✓',
     'form.success.d': 'Notre équipe vous recontactera sous 24h ouvrées pour confirmer votre rendez-vous. Vous recevrez aussi un email de confirmation.',
+    'modal.success.t': 'Merci pour votre demande de rendez-vous',
+    'modal.success.d': 'Nous avons bien reçu votre demande. Notre équipe vous contactera très prochainement pour confirmer votre rendez-vous.',
+    'modal.error.t': 'Envoi impossible',
+    'modal.error.d': 'Une erreur est survenue lors de l\'envoi. Merci de réessayer ou de nous contacter directement par téléphone ou WhatsApp.',
+    'modal.close': 'Fermer',
+    'modal.retry': 'Réessayer',
     'footer.tag': 'Clinique privée multidisciplinaire à Oujda. 17 spécialités, urgences 24/7, équipe expérimentée.',
     'footer.spec': 'Spécialités',
     'footer.links': 'Liens utiles',
@@ -4449,6 +4566,12 @@ const I18N = {
     'form.submit': 'تأكيد الموعد',
     'form.success.t': 'تم إرسال طلبك ✓',
     'form.success.d': 'سيتصل بك فريقنا خلال 24 ساعة عمل لتأكيد موعدك. ستتلقى أيضًا بريدًا إلكترونيًا للتأكيد.',
+    'modal.success.t': 'شكرًا لطلبكم الموعد',
+    'modal.success.d': 'لقد استلمنا طلبكم بنجاح. سيتواصل معكم فريقنا قريبًا جدًا لتأكيد موعدكم.',
+    'modal.error.t': 'تعذّر الإرسال',
+    'modal.error.d': 'حدث خطأ أثناء الإرسال. يُرجى المحاولة مجددًا أو التواصل معنا مباشرة عبر الهاتف أو واتساب.',
+    'modal.close': 'إغلاق',
+    'modal.retry': 'إعادة المحاولة',
     'footer.tag': 'مصحة خاصة متعددة التخصصات بوجدة. 17 تخصصاً، مستعجلات 24/7، فريق ذو خبرة.',
     'footer.spec': 'التخصصات',
     'footer.links': 'روابط مفيدة',
@@ -4894,24 +5017,38 @@ const counterIO = new IntersectionObserver((entries) => {
 }, { threshold: 0.5 });
 document.querySelectorAll('.counter').forEach(el => counterIO.observe(el));
 
-// Affichage du panneau de succès si retour de FormSubmit (?rdv=ok)
+// Modals popup — open/close + fallback ?rdv=ok (anciens liens email)
 (function() {
+  const openModal = (id) => {
+    const m = document.getElementById(id);
+    if (!m) return;
+    m.setAttribute('aria-hidden', 'false');
+    document.body.classList.add('appt-modal-open');
+    const focusable = m.querySelector('button, a, [tabindex]');
+    if (focusable) setTimeout(() => focusable.focus(), 50);
+  };
+  const closeModal = (m) => {
+    m.setAttribute('aria-hidden', 'true');
+    document.body.classList.remove('appt-modal-open');
+  };
+  document.querySelectorAll('.appt-modal').forEach(m => {
+    m.addEventListener('click', (e) => { if (e.target === m) closeModal(m); });
+    m.querySelectorAll('[data-appt-modal-close]').forEach(btn => {
+      btn.addEventListener('click', () => closeModal(m));
+    });
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.key !== 'Escape') return;
+    document.querySelectorAll('.appt-modal[aria-hidden="false"]').forEach(closeModal);
+  });
+  // Exposé globalement pour le handler du formulaire ci-dessous
+  window.__apptOpenModal = openModal;
+
+  // Fallback : si l'utilisateur revient via un vieux lien ?rdv=ok, on ouvre la popup succès
   const params = new URLSearchParams(window.location.search);
   if (params.get('rdv') === 'ok') {
-    const successEl = document.getElementById('formSuccess');
-    const form = document.getElementById('apptForm');
-    if (successEl && form) {
-      successEl.hidden = false;
-      // Masquer les champs de saisie (hors panneau de succès)
-      form.querySelectorAll('.form-row, .form-field:not(.form-success), .form-consent, button[type="submit"]').forEach(el => {
-        if (!el.closest('.form-success')) el.style.display = 'none';
-      });
-      setTimeout(() => {
-        const appt = document.getElementById('appointment');
-        if (appt) appt.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }, 200);
-      history.replaceState(null, '', window.location.pathname + '#appointment');
-    }
+    openModal('apptModalSuccess');
+    history.replaceState(null, '', window.location.pathname + '#appointment');
   }
 })();
 
@@ -4950,7 +5087,8 @@ document.querySelectorAll('.counter').forEach(el => counterIO.observe(el));
   const clearError = () => { errBox.hidden = true; errBox.textContent = ''; };
 
   form.addEventListener('input', clearError);
-  form.addEventListener('submit', (e) => {
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
     const t = (currentLang === 'ar') ? messages.ar : messages.fr;
     let firstInvalid = null;
     let invalidTel = false;
@@ -4969,18 +5107,39 @@ document.querySelectorAll('.counter').forEach(el => counterIO.observe(el));
       if (!ok) { invalidTel = true; if (!firstInvalid) firstInvalid = telEl; }
     }
     if (firstInvalid) {
-      e.preventDefault();
       showError(invalidTel ? t.tel : t.fill);
       try { firstInvalid.focus({ preventScroll: false }); } catch (_) { firstInvalid.focus(); }
       return;
     }
+
     const btn = form.querySelector('button[type="submit"]');
+    const span = btn ? btn.querySelector('span') : null;
+    const originalLabel = span ? span.textContent : '';
     if (btn) {
       btn.disabled = true;
       btn.style.opacity = '0.7';
       btn.style.cursor = 'wait';
-      const span = btn.querySelector('span');
       if (span) span.textContent = t.sending;
+    }
+
+    try {
+      const res = await fetch(form.action, {
+        method: 'POST',
+        body: new FormData(form),
+        headers: { 'X-Requested-With': 'XMLHttpRequest', 'Accept': 'application/json' }
+      });
+      if (!res.ok) throw new Error('HTTP ' + res.status);
+      if (window.__apptOpenModal) window.__apptOpenModal('apptModalSuccess');
+      form.reset();
+    } catch (err) {
+      if (window.__apptOpenModal) window.__apptOpenModal('apptModalError');
+    } finally {
+      if (btn) {
+        btn.disabled = false;
+        btn.style.opacity = '';
+        btn.style.cursor = '';
+        if (span) span.textContent = originalLabel;
+      }
     }
   });
 })();
