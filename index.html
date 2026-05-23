@@ -3850,12 +3850,9 @@ section.gallery-section .gallery-item-overlay {
       </div>
 
       <form class="appt-form reveal" id="apptForm"
-            action="https://formsubmit.co/ajax/info@cliniqueachifaaoujda.com"
+            action="submit.php"
             method="POST"
             novalidate>
-        <input type="hidden" name="_subject" value="Nouvelle demande de RDV — Clinique Achifaa Oujda" />
-        <input type="hidden" name="_template" value="table" />
-        <input type="hidden" name="_captcha" value="false" />
         <input type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0;" />
 
         <div class="form-row">
@@ -5126,18 +5123,12 @@ document.querySelectorAll('.counter').forEach(el => counterIO.observe(el));
     }
 
     try {
-      const data = {};
-      new FormData(form).forEach((v, k) => { data[k] = v; });
       const res = await fetch(form.action, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-        body: JSON.stringify(data)
+        body: new FormData(form),
+        headers: { 'X-Requested-With': 'XMLHttpRequest', 'Accept': 'application/json' }
       });
       if (!res.ok) throw new Error('HTTP ' + res.status);
-      const json = await res.json().catch(() => ({}));
-      if (json && json.success !== undefined && String(json.success).toLowerCase() === 'false') {
-        throw new Error(json.message || 'submit failed');
-      }
       if (window.__apptOpenModal) window.__apptOpenModal('apptModalSuccess');
       form.reset();
     } catch (err) {
