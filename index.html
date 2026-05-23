@@ -3776,11 +3776,14 @@ section.gallery-section .gallery-item-overlay {
       </div>
 
       <form class="appt-form reveal" id="apptForm"
-            action="submit.php"
+            action="https://formsubmit.co/info@cliniqueachifaaoujda.com"
             method="POST"
             novalidate>
-        <!-- Handler PHP local (Hostinger SMTP). Voir /submit.php + /.env -->
-        <!-- Honeypot anti-spam -->
+        <input type="hidden" name="_subject" value="Nouvelle demande de RDV — Clinique Achifaa Oujda" />
+        <input type="hidden" name="_template" value="table" />
+        <input type="hidden" name="_captcha" value="false" />
+        <input type="hidden" name="_next" value="https://cliniqueachifaaoujda.com/?rdv=ok#appointment" />
+        <input type="hidden" name="_autoresponse" value="Bonjour, nous avons bien reçu votre demande de rendez-vous à la Clinique Achifaa Oujda. Notre équipe vous recontactera sous 24h ouvrées pour confirmer la date et l'heure. Merci de votre confiance. — Clinique Achifaa Oujda · +212 5 36 70 00 00" />
         <input type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0;" />
 
         <div class="form-row">
