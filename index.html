@@ -2476,6 +2476,89 @@ html[dir="rtl"] .about-feat:hover { transform: translateX(-4px); }
 /* =========================================
    GALLERY (établissement)
 ========================================= */
+.home-procedure {
+  background: linear-gradient(180deg, #F9FAFB 0%, #FFFFFF 100%);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+.home-procedure-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr);
+  gap: clamp(28px, 5vw, 56px);
+  align-items: center;
+}
+.home-procedure-copy { max-width: 620px; }
+.home-procedure-copy .section-sub { margin-bottom: 24px; }
+.home-procedure-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 28px;
+  display: grid;
+  gap: 10px;
+}
+.home-procedure-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  color: var(--text-body);
+  font-size: 15px;
+}
+.home-procedure-list li::before {
+  content: "";
+  flex: 0 0 auto;
+  width: 18px;
+  height: 18px;
+  margin-top: 3px;
+  border-radius: 50%;
+  background: var(--green-soft) url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2310B981' stroke-width='3.5' stroke-linecap='round' stroke-linejoin='round'><polyline points='20 6 9 17 4 12'/></svg>") center/12px no-repeat;
+}
+.home-procedure-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.home-procedure-media {
+  display: grid;
+  grid-template-columns: 1fr 0.78fr;
+  gap: 14px;
+  align-items: stretch;
+}
+.home-procedure-photo {
+  position: relative;
+  min-height: 220px;
+  margin: 0;
+  border-radius: 18px;
+  overflow: hidden;
+  background: var(--bg-primary);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-md);
+}
+.home-procedure-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.home-procedure-main { min-height: 430px; }
+.home-procedure-stack {
+  display: grid;
+  gap: 14px;
+}
+.home-procedure-badge {
+  position: absolute;
+  left: 16px;
+  bottom: 16px;
+  max-width: calc(100% - 32px);
+  padding: 8px 12px;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.94);
+  color: var(--blue-dark);
+  font-size: 12px;
+  font-weight: 800;
+  box-shadow: var(--shadow-sm);
+}
+html[dir="rtl"] .home-procedure-list li { flex-direction: row-reverse; }
+html[dir="rtl"] .home-procedure-badge { left: auto; right: 16px; }
+
 .gallery-section { background: var(--bg-primary); }
 .gallery-grid {
   display: grid;
@@ -3096,6 +3179,10 @@ html[dir="rtl"] .footer-contact div { unicode-bidi: plaintext; }
   .spec-grid { grid-template-columns: repeat(2, 1fr); }
   .about-grid { grid-template-columns: 1fr; gap: 50px; }
   .about-img { aspect-ratio: 4/3; max-width: 600px; margin: 0 auto; }
+  .home-procedure-grid,
+  .home-procedure-media { grid-template-columns: 1fr; }
+  .home-procedure-main { min-height: 320px; }
+  .home-procedure-stack { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .gallery-grid { grid-template-columns: repeat(2, 1fr); grid-template-rows: 180px 180px 180px; }
   .gallery-item-1 { grid-column: 1 / 3; grid-row: 1 / 2; }
   .team-grid { grid-template-columns: repeat(2, 1fr); }
@@ -3110,6 +3197,8 @@ html[dir="rtl"] .footer-contact div { unicode-bidi: plaintext; }
   /* .section padding already fluid via clamp() */
   .spec-grid { grid-template-columns: 1fr; }
   .form-row { grid-template-columns: 1fr; gap: 12px; }
+  .home-procedure-stack { grid-template-columns: 1fr; }
+  .home-procedure-photo { min-height: 210px; }
   .gallery-grid { grid-template-columns: 1fr; grid-template-rows: repeat(4, 200px); }
   .gallery-item-1 { grid-column: 1; grid-row: 1; }
   .team-grid { grid-template-columns: 1fr; }
@@ -3661,6 +3750,81 @@ section.gallery-section .gallery-item-overlay {
       </div>
     </aside>
 
+  </div>
+</section>
+
+<!-- ====================================
+     FEATURED PROCEDURE — Urologie
+==================================== -->
+<section class="section home-procedure" id="ureteroscopie-thulium">
+  <div class="container">
+    <div class="home-procedure-grid">
+      <div class="home-procedure-copy reveal">
+        <span class="eyebrow" data-i18n="thulium.eyebrow">Technique mini-invasive</span>
+        <h2 data-i18n="thulium.title">Urétéroscopie <em>Laser Thulium.</em></h2>
+        <p class="section-sub" data-i18n="thulium.text">Traitement des calculs du rein et de l'uretère sans incision, par endoscope et laser de haute précision.</p>
+        <ul class="home-procedure-list">
+          <li data-i18n="thulium.b1">Sans chirurgie ouverte</li>
+          <li data-i18n="thulium.b2">Fragmentation précise des calculs urinaires</li>
+          <li data-i18n="thulium.b3">Douleurs post-opératoires réduites</li>
+          <li data-i18n="thulium.b4">Récupération rapide et hospitalisation courte</li>
+        </ul>
+        <div class="home-procedure-actions">
+          <a href="services/urologie.html#ureteroscopie-thulium" class="btn btn-primary" data-i18n="thulium.cta">Découvrir l'opération</a>
+          <a href="#appointment" class="btn btn-outline" data-i18n="thulium.rdv">Prendre RDV</a>
+        </div>
+      </div>
+      <div class="home-procedure-media reveal">
+        <figure class="home-procedure-photo home-procedure-main">
+          <img src="images/Ureteroscopie%20laser%20thulium1.jpg" alt="Urétéroscopie Laser Thulium à la Clinique Achifaa Oujda" width="1936" height="1291" loading="lazy" decoding="async" />
+          <figcaption class="home-procedure-badge" data-i18n="thulium.badge">Calculs urinaires · Rein & uretère</figcaption>
+        </figure>
+        <div class="home-procedure-stack">
+          <figure class="home-procedure-photo">
+            <img src="images/Ureteroscopie%20laser%20thulium2.jpg" alt="Visualisation endoscopique pendant une urétéroscopie laser" width="1936" height="1291" loading="lazy" decoding="async" />
+          </figure>
+          <figure class="home-procedure-photo">
+            <img src="images/Ureteroscopie%20laser%20thulium4.jpg" alt="Fibre laser Thulium utilisée en bloc opératoire" width="1936" height="1291" loading="lazy" decoding="async" />
+          </figure>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section home-procedure" id="cure-hernie-laparoscopie">
+  <div class="container">
+    <div class="home-procedure-grid">
+      <div class="home-procedure-copy reveal">
+        <span class="eyebrow" data-i18n="hernia.eyebrow">Chirurgie mini-invasive</span>
+        <h2 data-i18n="hernia.title">Cure de hernie <em>par laparoscopie.</em></h2>
+        <p class="section-sub" data-i18n="hernia.text">Réparation des hernies inguinales, ombilicales ou de la paroi abdominale par petites incisions, avec contrôle vidéo et récupération plus rapide.</p>
+        <ul class="home-procedure-list">
+          <li data-i18n="hernia.b1">Petites incisions et cicatrices discrètes</li>
+          <li data-i18n="hernia.b2">Douleurs post-opératoires réduites</li>
+          <li data-i18n="hernia.b3">Reprise plus rapide des activités</li>
+          <li data-i18n="hernia.b4">Hospitalisation courte selon les cas</li>
+        </ul>
+        <div class="home-procedure-actions">
+          <a href="services/chirurgie-viscerale-digestive.html#cure-hernie-laparoscopie" class="btn btn-primary" data-i18n="hernia.cta">Découvrir l'opération</a>
+          <a href="#appointment" class="btn btn-outline" data-i18n="hernia.rdv">Prendre RDV</a>
+        </div>
+      </div>
+      <div class="home-procedure-media reveal">
+        <figure class="home-procedure-photo home-procedure-main">
+          <img src="images/Cure%20de%20hernie%20par%20laparoscopie2.jpg" alt="Cure de hernie par laparoscopie à la Clinique Achifaa Oujda" width="1936" height="1291" loading="lazy" decoding="async" />
+          <figcaption class="home-procedure-badge" data-i18n="hernia.badge">Hernie · Chirurgie laparoscopique</figcaption>
+        </figure>
+        <div class="home-procedure-stack">
+          <figure class="home-procedure-photo">
+            <img src="images/Cure%20de%20hernie%20par%20laparoscopie4.jpg" alt="Équipe chirurgicale pendant une cure de hernie par laparoscopie" width="1936" height="1291" loading="lazy" decoding="async" />
+          </figure>
+          <figure class="home-procedure-photo">
+            <img src="images/Cure%20de%20hernie%20par%20laparoscopie8.jpg" alt="Résultat des petites incisions après cure de hernie par laparoscopie" width="1936" height="1291" loading="lazy" decoding="async" />
+          </figure>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -4248,6 +4412,26 @@ const I18N = {
     'sxcta.rdv': 'Prendre RDV',
     'sxcta.rdv.sub': 'Réservation en ligne',
     'sxcta.contact': 'Contactez-nous',
+    'thulium.eyebrow': 'Technique mini-invasive',
+    'thulium.title': 'Urétéroscopie <em>Laser Thulium.</em>',
+    'thulium.text': "Traitement des calculs du rein et de l'uretère sans incision, par endoscope et laser de haute précision.",
+    'thulium.b1': 'Sans chirurgie ouverte',
+    'thulium.b2': 'Fragmentation précise des calculs urinaires',
+    'thulium.b3': 'Douleurs post-opératoires réduites',
+    'thulium.b4': 'Récupération rapide et hospitalisation courte',
+    'thulium.cta': "Découvrir l'opération",
+    'thulium.rdv': 'Prendre RDV',
+    'thulium.badge': 'Calculs urinaires · Rein & uretère',
+    'hernia.eyebrow': 'Chirurgie mini-invasive',
+    'hernia.title': 'Cure de hernie <em>par laparoscopie.</em>',
+    'hernia.text': 'Réparation des hernies inguinales, ombilicales ou de la paroi abdominale par petites incisions, avec contrôle vidéo et récupération plus rapide.',
+    'hernia.b1': 'Petites incisions et cicatrices discrètes',
+    'hernia.b2': 'Douleurs post-opératoires réduites',
+    'hernia.b3': 'Reprise plus rapide des activités',
+    'hernia.b4': 'Hospitalisation courte selon les cas',
+    'hernia.cta': "Découvrir l'opération",
+    'hernia.rdv': 'Prendre RDV',
+    'hernia.badge': 'Hernie · Chirurgie laparoscopique',
     'urg.eyebrow': 'Urgences 24/7',
     'urg.title': 'Une urgence&nbsp;? <em>Nous sommes là pour vous.</em>',
     'urg.text': "Service d'urgences ouvert 24h/24, 7j/7. Médecins urgentistes, scanner et bloc opératoire opérationnels en permanence.",
@@ -4497,6 +4681,26 @@ const I18N = {
     'sxcta.rdv': 'حجز موعد',
     'sxcta.rdv.sub': 'حجز عبر الإنترنت',
     'sxcta.contact': 'اتصل بنا',
+    'thulium.eyebrow': 'تقنية طفيفة التوغل',
+    'thulium.title': 'تنظير الحالب <em>بليزر الثوليوم.</em>',
+    'thulium.text': 'علاج حصى الكلى والحالب دون شق جراحي، بواسطة المنظار وليزر عالي الدقة.',
+    'thulium.b1': 'دون جراحة مفتوحة',
+    'thulium.b2': 'تفتيت دقيق للحصى البولية',
+    'thulium.b3': 'آلام أقل بعد العملية',
+    'thulium.b4': 'تعاف سريع واستشفاء قصير',
+    'thulium.cta': 'اكتشاف العملية',
+    'thulium.rdv': 'حجز موعد',
+    'thulium.badge': 'حصى الجهاز البولي · الكلى والحالب',
+    'hernia.eyebrow': 'جراحة طفيفة التوغل',
+    'hernia.title': 'علاج الفتق <em>بالمنظار.</em>',
+    'hernia.text': 'إصلاح الفتق الإربي أو السري أو فتق جدار البطن عبر شقوق صغيرة، مع مراقبة بالفيديو وتعاف أسرع.',
+    'hernia.b1': 'شقوق صغيرة وندوب خفيفة',
+    'hernia.b2': 'آلام أقل بعد العملية',
+    'hernia.b3': 'عودة أسرع للنشاط اليومي',
+    'hernia.b4': 'استشفاء قصير حسب الحالة',
+    'hernia.cta': 'اكتشاف العملية',
+    'hernia.rdv': 'حجز موعد',
+    'hernia.badge': 'الفتق · جراحة بالمنظار',
     'urg.eyebrow': 'مستعجلات 24/7',
     'urg.title': 'هل لديك حالة طارئة؟ <em>نحن هنا من أجلك.</em>',
     'urg.text': 'خدمة المستعجلات مفتوحة 24 ساعة على 24، 7 أيام على 7. أطباء وسكانير وقاعة عمليات جاهزون دائماً.',
