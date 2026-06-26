@@ -1013,10 +1013,7 @@ html[dir="rtl"] .hero-hud-tr { right: auto; left: 50px; flex-direction: row; }
   animation: charIn 1s cubic-bezier(.2,.8,.2,1) forwards;
 }
 .hero-mark-title .gradient {
-  background: linear-gradient(135deg, var(--green-light), #67E8F9);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
+  color: #fff;
 }
 @keyframes charIn {
   to { opacity: 1; transform: translateY(0) rotate(0); }
@@ -1118,7 +1115,7 @@ html[dir="rtl"] .hero-hud-tr { right: auto; left: 50px; flex-direction: row; }
   letter-spacing: -0.045em;
   margin: 0 0 8px 0;
 }
-.hero h1 .accent { color: var(--green-light); display: block; font-style: normal; font-weight: 900;}
+.hero h1 .accent { color: #fff; display: block; font-style: normal; font-weight: 900;}
 .hero-sub {
   font-size: clamp(15px, 1.4vw, 18px);
   color: rgba(255,255,255,0.82);
@@ -3662,7 +3659,7 @@ section.gallery-section .gallery-item-overlay {
       <p class="hero-mark-sub" data-i18n="brand_sub">CLINIQUE PRIVÉE MULTIDISCIPLINAIRE · OUJDA · ORIENTAL</p>
       <div class="hero-stat">
         <span class="hero-stat-bullet"></span>
-        <span><strong>+50 000</strong>&nbsp;<span data-i18n="hero.patients">patients soignés · 17 spécialités · Urgences 24/7</span></span>
+        <span data-i18n="hero.patients">17 spécialités · Urgences 24/7</span>
       </div>
       <p class="visually-hidden">
         Clinique Achifaa Oujda est une clinique privée multidisciplinaire située au Bd. Med Jelloul 3, Oujda, Oriental, Maroc.
@@ -4335,7 +4332,7 @@ const I18N = {
     'hero.scroll': 'Découvrir',
     'hero.live': 'EN DIRECT · OUJDA',
     'hero.est': 'EST. 2010 · MAROC',
-    'hero.patients': 'patients soignés · 17 spécialités',
+    'hero.patients': '17 spécialités · Urgences 24/7',
     'stat.spec': 'Spécialités médicales',
     'stat.urg': 'Urgences disponibles',
     'stat.exp': "Années d'expérience",
@@ -4387,7 +4384,7 @@ const I18N = {
     'tst.eyebrow': 'Témoignages',
     'tst.title1': 'Ce que disent',
     'tst.title2': 'nos patients.',
-    'tst.sub': 'Plus de 50 000 patients nous ont fait confiance. Voici leurs retours.',
+    'tst.sub': 'Nos patients nous ont fait confiance. Voici leurs retours.',
     'tst.1.t': '"Une équipe médicale d\'une grande humanité. Mon père a été pris en charge aux urgences à 2h du matin avec un professionnalisme exceptionnel. Le scanner a été réalisé en 20 minutes."',
     'tst.1.r': 'Cardiologie · Oujda',
     'tst.2.t': '"Opération de la vésicule réalisée par cœlioscopie. Hospitalisation 24h, infirmières aux petits soins, chambre confortable. Je suis rentré chez moi serein."',
@@ -4606,7 +4603,7 @@ const I18N = {
     'hero.scroll': 'اكتشف',
     'hero.live': 'مباشر · وجدة',
     'hero.est': 'تأسست 2010 · المغرب',
-    'hero.patients': 'مريض · 17 تخصصاً',
+    'hero.patients': '17 تخصصاً · طوارئ 24/7',
     'stat.spec': 'تخصص طبي',
     'stat.urg': 'مستعجلات متاحة',
     'stat.exp': 'سنوات من الخبرة',
@@ -4658,7 +4655,7 @@ const I18N = {
     'tst.eyebrow': 'شهادات',
     'tst.title1': 'ما يقوله',
     'tst.title2': 'مرضانا.',
-    'tst.sub': 'أكثر من 50 ألف مريض وثقوا بنا. هذه آراؤهم.',
+    'tst.sub': 'مرضانا وثقوا بنا. هذه آراؤهم.',
     'tst.1.t': '"فريق طبي ذو إنسانية كبيرة. تم استقبال والدي في المستعجلات الساعة الثانية صباحا باحترافية استثنائية."',
     'tst.1.r': 'أمراض القلب · وجدة',
     'tst.2.t': '"عملية المرارة بالمنظار. 24 ساعة استشفاء، ممرضات لطيفات، غرفة مريحة. عدت إلى البيت مطمئنا."',
@@ -4841,23 +4838,23 @@ const I18N = {
    SPECIALTIES DATA
 ========================================= */
 const SPECIALTIES = [
-  { key: 'cardio',  name_fr: 'Cardiologie',                     name_ar: 'أمراض القلب',                desc_fr: 'Diagnostic et traitement des maladies du cœur.',           desc_ar: 'تشخيص وعلاج أمراض القلب.',                cat: 'medecine',  cat_label_fr: 'Médecine',   cat_label_ar: 'الطب',           img: 'images/Cardiologie%20(sans%20chirurgie%20cardiaque).webp' },
+  { key: 'uro',     name_fr: 'Urologie',                        name_ar: 'المسالك البولية',             desc_fr: "Pathologies de l'appareil urinaire et génital.",            desc_ar: 'أمراض الجهاز البولي والتناسلي.',          cat: 'chirurgie', cat_label_fr: 'Chirurgie',  cat_label_ar: 'الجراحة',        img: 'images/urologie.webp' },
   { key: 'visceral',name_fr: 'Chirurgie viscérale & digestive', name_ar: 'الجراحة العامة والهضمية',    desc_fr: "Chirurgie de l'appareil digestif et abdominal.",            desc_ar: 'جراحة الجهاز الهضمي والبطن.',             cat: 'chirurgie', cat_label_fr: 'Chirurgie',  cat_label_ar: 'الجراحة',        img: 'images/Chirurgie%20visc%C3%A9rale%20et%20digestive.webp' },
-  { key: 'derm',    name_fr: 'Dermatologie',                    name_ar: 'الأمراض الجلدية',            desc_fr: 'Soins de la peau, allergies et esthétique médicale.',       desc_ar: 'العناية بالبشرة وعلاج الأمراض الجلدية.',  cat: 'medecine',  cat_label_fr: 'Médecine',   cat_label_ar: 'الطب',           img: 'images/Dermatologie.webp' },
-  { key: 'endo',    name_fr: 'Endocrinologie',                  name_ar: 'الغدد الصماء',                desc_fr: 'Diabète, thyroïde et troubles hormonaux.',                  desc_ar: 'علاج السكري والغدة الدرقية.',             cat: 'medecine',  cat_label_fr: 'Médecine',   cat_label_ar: 'الطب',           img: 'images/Endocrinologie.webp' },
-  { key: 'gastro',  name_fr: 'Gastro-entérologie',              name_ar: 'أمراض الجهاز الهضمي',         desc_fr: 'Endoscopies, coloscopies et pathologies digestives.',       desc_ar: 'تنظير وعلاج أمراض الجهاز الهضمي.',        cat: 'medecine',  cat_label_fr: 'Médecine',   cat_label_ar: 'الطب',           img: 'images/Gastro-ent%C3%A9rologie.webp' },
-  { key: 'gyneco',  name_fr: 'Gynécologie & Obstétrique',       name_ar: 'أمراض النساء والتوليد',       desc_fr: 'Suivi de grossesse et santé féminine.',                     desc_ar: 'متابعة الحمل وصحة المرأة.',               cat: 'gyneco',    cat_label_fr: 'Gynécologie',cat_label_ar: 'النساء',         img: 'images/Gyn%C3%A9cologie%20et%20obst%C3%A9trique.webp' },
-  { key: 'gen',     name_fr: 'Médecine générale',               name_ar: 'الطب العام',                  desc_fr: 'Consultations généralistes et médecine préventive.',        desc_ar: 'استشارات عامة وطب وقائي.',                cat: 'medecine',  cat_label_fr: 'Médecine',   cat_label_ar: 'الطب',           img: 'images/M%C3%A9decine%20g%C3%A9n%C3%A9rale.webp' },
-  { key: 'nephro',  name_fr: 'Néphrologie',                     name_ar: 'أمراض الكلى',                 desc_fr: 'Diagnostic et traitement des maladies rénales.',            desc_ar: 'تشخيص وعلاج أمراض الكلى.',                cat: 'medecine',  cat_label_fr: 'Médecine',   cat_label_ar: 'الطب',           img: 'images/N%C3%A9phrologie.webp' },
-  { key: 'neuro',   name_fr: 'Neurologie',                      name_ar: 'الأعصاب',                     desc_fr: 'Système nerveux, migraines, AVC, épilepsie.',               desc_ar: 'الجهاز العصبي والأمراض المرتبطة به.',     cat: 'medecine',  cat_label_fr: 'Médecine',   cat_label_ar: 'الطب',           img: 'images/Neurologie.webp' },
   { key: 'ophta',   name_fr: 'Ophtalmologie',                   name_ar: 'طب العيون',                   desc_fr: 'Centre dédié à la santé visuelle et chirurgie réfractive.', desc_ar: 'مركز مخصص لصحة العيون.',                  cat: 'chirurgie', cat_label_fr: 'Chirurgie',  cat_label_ar: 'الجراحة',        img: 'images/Ophtalmologie.webp' },
-  { key: 'orl',     name_fr: 'ORL & Chirurgie cervico-faciale', name_ar: 'الأنف والأذن والحنجرة',       desc_fr: "Pathologies de l'oreille, du nez et de la gorge.",          desc_ar: 'أمراض الأذن والأنف والحنجرة.',            cat: 'chirurgie', cat_label_fr: 'Chirurgie',  cat_label_ar: 'الجراحة',        img: 'images/ORL%20(Oto-Rhino-Laryngologie).webp' },
-  { key: 'pedia',   name_fr: 'Pédiatrie',                       name_ar: 'طب الأطفال',                  desc_fr: 'Suivi médical complet des enfants et nouveau-nés.',         desc_ar: 'متابعة طبية شاملة للأطفال.',              cat: 'pediatrie', cat_label_fr: 'Pédiatrie',  cat_label_ar: 'الأطفال',        img: 'images/P%C3%A9diatrie.webp' },
-  { key: 'pneumo',  name_fr: 'Pneumologie',                     name_ar: 'أمراض الجهاز التنفسي',        desc_fr: 'Asthme, BPCO, troubles respiratoires.',                     desc_ar: 'الربو وأمراض الجهاز التنفسي.',            cat: 'medecine',  cat_label_fr: 'Médecine',   cat_label_ar: 'الطب',           img: 'images/Pneumologie.webp' },
-  { key: 'psy',     name_fr: 'Psychiatrie',                     name_ar: 'الطب النفسي',                 desc_fr: 'Soutien psychologique et prise en charge globale.',         desc_ar: 'دعم نفسي ورعاية شاملة.',                  cat: 'medecine',  cat_label_fr: 'Médecine',   cat_label_ar: 'الطب',           img: 'images/Psychiatrie.webp' },
   { key: 'radio',   name_fr: 'Radiologie & Imagerie médicale',  name_ar: 'الأشعة والتصوير الطبي',       desc_fr: 'Scanner, IRM, échographie et radiologie conventionnelle.',  desc_ar: 'سكانير وتصوير بالرنين والأشعة.',          cat: 'imagerie',  cat_label_fr: 'Imagerie',   cat_label_ar: 'التصوير',        img: 'images/Radiologie%20et%20imagerie%20m%C3%A9dicale.webp' },
   { key: 'ortho',   name_fr: 'Traumatologie & Orthopédie',      name_ar: 'جراحة العظام والمفاصل',       desc_fr: 'Chirurgie des os, articulations et traumatismes.',          desc_ar: 'جراحة العظام والمفاصل.',                  cat: 'chirurgie', cat_label_fr: 'Chirurgie',  cat_label_ar: 'الجراحة',        img: 'images/Traumatologie%20et%20orthop%C3%A9die.webp' },
-  { key: 'uro',     name_fr: 'Urologie',                        name_ar: 'المسالك البولية',             desc_fr: "Pathologies de l'appareil urinaire et génital.",            desc_ar: 'أمراض الجهاز البولي والتناسلي.',          cat: 'chirurgie', cat_label_fr: 'Chirurgie',  cat_label_ar: 'الجراحة',        img: 'images/urologie.webp' }
+  { key: 'gyneco',  name_fr: 'Gynécologie & Obstétrique',       name_ar: 'أمراض النساء والتوليد',       desc_fr: 'Suivi de grossesse et santé féminine.',                     desc_ar: 'متابعة الحمل وصحة المرأة.',               cat: 'gyneco',    cat_label_fr: 'Gynécologie',cat_label_ar: 'النساء',         img: 'images/Gyn%C3%A9cologie%20et%20obst%C3%A9trique.webp' },
+  { key: 'pedia',   name_fr: 'Pédiatrie',                       name_ar: 'طب الأطفال',                  desc_fr: 'Suivi médical complet des enfants et nouveau-nés.',         desc_ar: 'متابعة طبية شاملة للأطفال.',              cat: 'pediatrie', cat_label_fr: 'Pédiatrie',  cat_label_ar: 'الأطفال',        img: 'images/P%C3%A9diatrie.webp' },
+  { key: 'gen',     name_fr: 'Médecine générale',               name_ar: 'الطب العام',                  desc_fr: 'Consultations généralistes et médecine préventive.',        desc_ar: 'استشارات عامة وطب وقائي.',                cat: 'medecine',  cat_label_fr: 'Médecine',   cat_label_ar: 'الطب',           img: 'images/M%C3%A9decine%20g%C3%A9n%C3%A9rale.webp' },
+  { key: 'gastro',  name_fr: 'Gastro-entérologie',              name_ar: 'أمراض الجهاز الهضمي',         desc_fr: 'Endoscopies, coloscopies et pathologies digestives.',       desc_ar: 'تنظير وعلاج أمراض الجهاز الهضمي.',        cat: 'medecine',  cat_label_fr: 'Médecine',   cat_label_ar: 'الطب',           img: 'images/Gastro-ent%C3%A9rologie.webp' },
+  { key: 'cardio',  name_fr: 'Cardiologie',                     name_ar: 'أمراض القلب',                desc_fr: 'Diagnostic et traitement des maladies du cœur.',           desc_ar: 'تشخيص وعلاج أمراض القلب.',                cat: 'medecine',  cat_label_fr: 'Médecine',   cat_label_ar: 'الطب',           img: 'images/Cardiologie%20(sans%20chirurgie%20cardiaque).webp' },
+  { key: 'derm',    name_fr: 'Dermatologie',                    name_ar: 'الأمراض الجلدية',            desc_fr: 'Soins de la peau, allergies et esthétique médicale.',       desc_ar: 'العناية بالبشرة وعلاج الأمراض الجلدية.',  cat: 'medecine',  cat_label_fr: 'Médecine',   cat_label_ar: 'الطب',           img: 'images/Dermatologie.webp' },
+  { key: 'endo',    name_fr: 'Endocrinologie',                  name_ar: 'الغدد الصماء',                desc_fr: 'Diabète, thyroïde et troubles hormonaux.',                  desc_ar: 'علاج السكري والغدة الدرقية.',             cat: 'medecine',  cat_label_fr: 'Médecine',   cat_label_ar: 'الطب',           img: 'images/Endocrinologie.webp' },
+  { key: 'nephro',  name_fr: 'Néphrologie',                     name_ar: 'أمراض الكلى',                 desc_fr: 'Diagnostic et traitement des maladies rénales.',            desc_ar: 'تشخيص وعلاج أمراض الكلى.',                cat: 'medecine',  cat_label_fr: 'Médecine',   cat_label_ar: 'الطب',           img: 'images/N%C3%A9phrologie.webp' },
+  { key: 'neuro',   name_fr: 'Neurologie',                      name_ar: 'الأعصاب',                     desc_fr: 'Système nerveux, migraines, AVC, épilepsie.',               desc_ar: 'الجهاز العصبي والأمراض المرتبطة به.',     cat: 'medecine',  cat_label_fr: 'Médecine',   cat_label_ar: 'الطب',           img: 'images/Neurologie.webp' },
+  { key: 'orl',     name_fr: 'ORL & Chirurgie cervico-faciale', name_ar: 'الأنف والأذن والحنجرة',       desc_fr: "Pathologies de l'oreille, du nez et de la gorge.",          desc_ar: 'أمراض الأذن والأنف والحنجرة.',            cat: 'chirurgie', cat_label_fr: 'Chirurgie',  cat_label_ar: 'الجراحة',        img: 'images/ORL%20(Oto-Rhino-Laryngologie).webp' },
+  { key: 'pneumo',  name_fr: 'Pneumologie',                     name_ar: 'أمراض الجهاز التنفسي',        desc_fr: 'Asthme, BPCO, troubles respiratoires.',                     desc_ar: 'الربو وأمراض الجهاز التنفسي.',            cat: 'medecine',  cat_label_fr: 'Médecine',   cat_label_ar: 'الطب',           img: 'images/Pneumologie.webp' },
+  { key: 'psy',     name_fr: 'Psychiatrie',                     name_ar: 'الطب النفسي',                 desc_fr: 'Soutien psychologique et prise en charge globale.',         desc_ar: 'دعم نفسي ورعاية شاملة.',                  cat: 'medecine',  cat_label_fr: 'Médecine',   cat_label_ar: 'الطب',           img: 'images/Psychiatrie.webp' }
 ];
 
 /* =========================================
