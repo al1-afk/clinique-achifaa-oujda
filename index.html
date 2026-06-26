@@ -48,8 +48,9 @@
 <link rel="apple-touch-icon" href="images/logo.png" />
 <link rel="manifest" href="manifest.webmanifest" />
 
-<!-- Preload hero LCP image -->
+<!-- Preload hero LCP image + 2nd slide -->
 <link rel="preload" as="image" href="images/IMG_1928.webp" fetchpriority="high" />
+<link rel="preload" as="image" href="images/equipe-clinique-achifaa-2025.webp" />
 
 <!-- Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -646,17 +647,40 @@ body.no-scroll { overflow: hidden; }
 }
 .hero-bg {
   position: absolute; inset: -4%;
-  background-image: url('images/IMG_1928.webp');
-  background-size: cover;
-  background-position: center;
   z-index: -3;
   animation: kenBurns 22s ease-in-out infinite alternate;
   will-change: transform;
   transition: transform 200ms cubic-bezier(.2,.8,.2,1);
 }
+.hero-bg::before,
+.hero-bg::after {
+  content: "";
+  position: absolute; inset: 0;
+  background-size: cover;
+  background-position: center;
+}
+.hero-bg::before {
+  background-image: url('images/IMG_1928.webp');
+  animation: heroSlide1 14s ease-in-out infinite;
+}
+.hero-bg::after {
+  background-image: url('images/equipe-clinique-achifaa-2025.webp');
+  opacity: 0;
+  animation: heroSlide2 14s ease-in-out infinite;
+}
 @keyframes kenBurns {
   0%   { transform: scale(1.08) translate(-1%, -1%); }
   100% { transform: scale(1.18) translate(1.5%, 1%); }
+}
+@keyframes heroSlide1 {
+  0%, 45%   { opacity: 1; }
+  50%, 95%  { opacity: 0; }
+  100%      { opacity: 1; }
+}
+@keyframes heroSlide2 {
+  0%, 45%   { opacity: 0; }
+  50%, 95%  { opacity: 1; }
+  100%      { opacity: 0; }
 }
 
 /* Grain / noise texture overlay */
@@ -2560,9 +2584,10 @@ html[dir="rtl"] .home-procedure-badge { left: auto; right: 16px; }
 .gallery-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  grid-template-rows: 200px 200px;
+  grid-auto-rows: 200px;
   gap: 16px;
 }
+.gallery-item-wide { grid-column: span 2; }
 .gallery-item {
   border-radius: 18px;
   overflow: hidden;
@@ -3180,7 +3205,8 @@ html[dir="rtl"] .footer-contact div { unicode-bidi: plaintext; }
   .home-procedure-media { grid-template-columns: 1fr; }
   .home-procedure-main { min-height: 320px; }
   .home-procedure-stack { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .gallery-grid { grid-template-columns: repeat(2, 1fr); grid-template-rows: 180px 180px 180px; }
+  .gallery-grid { grid-template-columns: repeat(2, 1fr); grid-auto-rows: 180px; }
+  .gallery-item-wide { grid-column: span 2; }
   .gallery-item-1 { grid-column: 1 / 3; grid-row: 1 / 2; }
   .team-grid { grid-template-columns: repeat(2, 1fr); }
   .appt-grid { grid-template-columns: 1fr; gap: 50px; }
@@ -3196,7 +3222,8 @@ html[dir="rtl"] .footer-contact div { unicode-bidi: plaintext; }
   .form-row { grid-template-columns: 1fr; gap: 12px; }
   .home-procedure-stack { grid-template-columns: 1fr; }
   .home-procedure-photo { min-height: 210px; }
-  .gallery-grid { grid-template-columns: 1fr; grid-template-rows: repeat(4, 200px); }
+  .gallery-grid { grid-template-columns: 1fr; grid-auto-rows: 200px; }
+  .gallery-item-wide { grid-column: span 1; }
   .gallery-item-1 { grid-column: 1; grid-row: 1; }
   .team-grid { grid-template-columns: 1fr; }
   .footer-grid { grid-template-columns: 1fr; gap: 32px; }
@@ -3879,9 +3906,17 @@ section.gallery-section .gallery-item-overlay {
       </div>
     </div>
     <div class="gallery-grid reveal">
-      <div class="gallery-item gallery-item-1">
-        <img src="images/1.webp" alt="Scanner Siemens SOMATOM go.Now installé à la Clinique Achifaa Oujda" loading="lazy" decoding="async" width="1200" height="800" />
-        <div class="gallery-item-overlay" data-i18n="gal.scan">Scanner Siemens SOMATOM</div>
+      <div class="gallery-item gallery-item-wide">
+        <img src="images/IMG_1928.webp" alt="Façade de la Clinique Achifaa Oujda — Bd. Med Jelloul 3" loading="lazy" decoding="async" width="1600" height="1066" />
+        <div class="gallery-item-overlay" data-i18n="gal.facade">Façade · Clinique Achifaa</div>
+      </div>
+      <div class="gallery-item gallery-item-wide">
+        <img src="images/equipe-clinique-achifaa-2025.webp" alt="Équipe médicale de la Clinique Achifaa Oujda — 2025" loading="lazy" decoding="async" width="1600" height="1131" />
+        <div class="gallery-item-overlay" data-i18n="gal.team">Notre équipe · 2025</div>
+      </div>
+      <div class="gallery-item gallery-item-wide">
+        <img src="images/accueil-clinique-achifaa.webp" alt="Accueil et espace d'attente — Clinique Achifaa Oujda" loading="lazy" decoding="async" width="1600" height="1066" />
+        <div class="gallery-item-overlay" data-i18n="gal.reception">Accueil & espace patients</div>
       </div>
       <div class="gallery-item">
         <img src="images/IMG_1923.webp" alt="Bloc opératoire moderne — Clinique Achifaa Oujda" loading="lazy" decoding="async" width="1200" height="800" />
@@ -3898,6 +3933,18 @@ section.gallery-section .gallery-item-overlay {
       <div class="gallery-item">
         <img src="images/5.webp" alt="Service de soins infirmiers — Clinique Achifaa Oujda" loading="lazy" decoding="async" width="1200" height="800" />
         <div class="gallery-item-overlay" data-i18n="gal.care">Soins infirmiers</div>
+      </div>
+      <div class="gallery-item">
+        <img src="images/Ureteroscopie%20laser%20thulium1.webp" alt="Bloc opératoire pendant une urétéroscopie laser Thulium — Clinique Achifaa Oujda" loading="lazy" decoding="async" width="1600" height="1058" />
+        <div class="gallery-item-overlay" data-i18n="gal.thulium">Urétéroscopie Laser Thulium</div>
+      </div>
+      <div class="gallery-item">
+        <img src="images/Cure%20de%20hernie%20par%20laparoscopie1.webp" alt="Cure de hernie par laparoscopie — Clinique Achifaa Oujda" loading="lazy" decoding="async" width="1600" height="1058" />
+        <div class="gallery-item-overlay" data-i18n="gal.laparo">Cure de hernie · Laparoscopie</div>
+      </div>
+      <div class="gallery-item gallery-item-wide">
+        <img src="images/1.webp" alt="Scanner Siemens SOMATOM go.Now installé à la Clinique Achifaa Oujda" loading="lazy" decoding="async" width="1200" height="800" />
+        <div class="gallery-item-overlay" data-i18n="gal.scan">Scanner Siemens SOMATOM</div>
       </div>
     </div>
   </div>
@@ -4481,6 +4528,11 @@ const I18N = {
     'gal.icu': 'Soins intensifs',
     'gal.room': 'Chambre patient',
     'gal.care': 'Soins infirmiers',
+    'gal.facade': 'Façade · Clinique Achifaa',
+    'gal.team': 'Notre équipe · 2025',
+    'gal.reception': 'Accueil & espace patients',
+    'gal.thulium': 'Urétéroscopie Laser Thulium',
+    'gal.laparo': 'Cure de hernie · Laparoscopie',
     'team.eyebrow': 'Équipe médicale',
     'team.title1': 'Des médecins',
     'team.title2': "d'excellence.",
@@ -4752,6 +4804,11 @@ const I18N = {
     'gal.icu': 'العناية المركزة',
     'gal.room': 'غرفة المريض',
     'gal.care': 'تمريض',
+    'gal.facade': 'الواجهة · مصحة الشفاء',
+    'gal.team': 'فريقنا · 2025',
+    'gal.reception': 'الاستقبال وقاعة الانتظار',
+    'gal.thulium': 'تنظير الحالب بليزر الثوليوم',
+    'gal.laparo': 'علاج الفتق بالمنظار',
     'team.eyebrow': 'الفريق الطبي',
     'team.title1': 'أطباء',
     'team.title2': 'متميزون.',
